@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Типография — заказы</title>
+  <meta name="theme-color" content="#151821" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="ART-LINE OS" />
+  <!-- manifest.webmanifest пока не подключаем — заглушка, полноценный PWA-перенос отложен за рамки Фазы 0 -->
+  <link rel="icon" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="startup-screen-v15" id="startupScreenV15"><strong>ART-LINE OS</strong><span>Загрузка мобильного рабочего пространства...</span></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand no-logo">
+        <div>
+          <strong>ART-LINE OS</strong>
+        </div>
+      </div>
+
+      <div class="role-panel">
+        <label for="roleSelect">Кабинет</label>
+        <select id="roleSelect">
+          <option value="director">Директор</option>
+          <option value="admin">Администратор</option>
+          <option value="assistant">Помощник директора</option>
+          <option value="manager">Менеджер</option>
+          <option value="designer">Дизайнер</option>
+          <option value="technologist">Технолог</option>
+          <option value="production_manager">Менеджер производства</option>
+          <option value="economist">Экономист</option>
+          <option value="accountant">Бухгалтер</option>
+          <option value="worker">Печатник</option>
+        </select>
+        <label for="staffSelect">Вы</label>
+        <select id="staffSelect"></select>
+      </div>
+
+      <nav class="nav" id="mainNav">
+        <button data-section="dashboard" class="active">Главная</button>
+        <button data-section="pulse">Пульс компании</button>
+        <button data-section="clients">Клиенты</button>
+        <button data-section="crm">CRM</button>
+        <button data-section="workspace">Рабочий стол</button>
+        <button data-section="employees">Сотрудники</button>
+        <button data-section="calendar">Календарь</button>
+        <button data-section="tasks">Задачи</button>
+        <button data-section="news">Новости</button>
+        <button data-section="notifications">Уведомления</button>
+        <button data-section="import">Импорт базы</button>
+        <button data-section="funnel">Воронка</button>
+        <button data-section="calculator">Калькулятор</button>
+        <button data-section="calculations">Расчёты</button>
+        <button data-section="contracts">Договоры</button>
+        <button data-section="requests">Запросы</button>
+        <button data-section="specifications">Спецификации</button>
+        <button data-section="orders">Заказы</button>
+        <button data-section="approvals">Бланки согласования</button>
+        <button data-section="questions">Вопросы</button>
+        <button data-section="tooling">Ножи и формы</button>
+        <button data-section="production">Производство</button>
+        <button data-section="finance">Финансы</button>
+        <button data-section="documents">Документы</button>
+        <button data-section="ai">ИИ</button>
+        <button data-section="settings">Настройки</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div>
+          <h1 id="pageTitle">Главная</h1>
+          <p id="pageSubtitle">Контроль клиента, договора, заказа и производства в одном месте.</p>
+        </div>
+        <div class="notif-wrap" id="notifWrap">
+          <button class="notif-bell" onclick="toggleNotifPanel(event)">Уведомления<span class="notif-badge hidden" id="notifBellBadge">0</span></button>
+          <div class="notif-panel hidden" id="notifPanel"></div>
+        </div>
+        <div class="user-card">
+          <span id="roleName">Менеджер</span>
+          <strong id="topbarStaffName">—</strong>
+        </div>
+      </header>
+
+      <section id="dashboard" class="section active-section">
+        <div class="stats-grid">
+          <article><span>Сегодня у менеджера</span><strong>14</strong><small>касания, задачи и напоминания</small></article>
+          <article><span>Сотрудники</span><strong>10</strong><small>роли и личные кабинеты</small></article>
+          <article><span>CRM-клиенты</span><strong>42</strong><small>8 горячих, 6 без шага</small></article>
+          <article><span>В производстве</span><strong>18</strong><small>5 ждут сырьё / формы</small></article>
+          <article><span>Договоры</span><strong>7</strong><small>2 на согласовании</small></article>
+          <article><span>Просрочено</span><strong>5</strong><small>нужны повторные касания</small></article>
+          <article><span>Вопросы по заказам</span><strong id="questionCountBadge">3</strong><small>1 срочный</small></article>
+          <article><span>Импортировано клиентов</span><strong id="importedCountBadge">0</strong><small>через таблицы менеджеров</small></article>
+          <article><span>Файлы клиента</span><strong id="clientFilesBadge">6</strong><small>договоры, ТЗ, макеты, бланки</small></article>
+        </div>
+
+      </section>
+
+
+      <section id="pulse" class="section">
+        <div class="card"><div class="empty-state">Раздел в разработке.</div></div>
+      </section>
+
+
+      <section id="workspace" class="section">
+        <div class="workspace-grid">
+          <div class="card day-focus-card">
+            <div class="card-head"><h3>Сегодня</h3><span class="pill success">Менеджер</span></div>
+            <div class="today-stack">
+              <article class="focus-item hot"><strong>10:30 · Позвонить ООО «Фрутти»</strong><span>Повторное касание после отправки КП. Связано с карточкой клиента.</span><button class="small-btn" data-go="clients">Открыть клиента</button></article>
+              <article class="focus-item"><strong>12:00 · Проверить ответ Grass</strong><span>Переговоры по условиям, возможная реферальная система и образцы.</span><button class="small-btn" data-go="clients">История клиента</button></article>
+              <article class="focus-item"><strong>15:00 · Подготовить спецификацию</strong><span>Связано с заказом AL-2026-0711-01 и договором клиента.</span><button class="small-btn" data-go="orders">Открыть заказ</button></article>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Вопросы ко мне</h3><span class="pill" id="workspaceQuestionBadge">0</span></div>
+            <div class="mini-table" id="workspaceMyQuestions"></div>
+            <button class="small-btn" data-go="questions">Открыть все вопросы</button>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Новости компании</h3><span class="status warning" id="workspaceNewsUnread">0 непрочитано</span></div>
+            <div class="news-mini-list" id="workspaceNewsMini"></div>
+            <button class="small-btn" data-go="news">Открыть новости</button>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Календарь недели</h3><span class="pill">7 событий</span></div>
+            <div class="calendar-mini">
+              <div><b>Пн</b><span>3 касания</span></div>
+              <div><b>Вт</b><span>1 договор</span></div>
+              <div><b>Ср</b><span>2 КП</span></div>
+              <div><b>Чт</b><span>1 встреча</span></div>
+              <div><b>Пт</b><span>отгрузка</span></div>
+            </div>
+            <button class="small-btn" data-go="calendar">Открыть календарь</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="employees" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Сотрудники и доступ</h3><button class="small-btn" id="demoCreateEmployeeBtn">+ Создать кабинет</button></div>
+            <p>В рабочей версии руководитель или администратор создаёт сотрудника, задаёт логин, временный пароль, назначает роль и включает доступ к нужным разделам.</p>
+            <div class="employee-list">
+              <article class="employee-card active"><div><strong>Овечкин Константин</strong><span>Менеджер · продажи · активен</span></div><b>CRM / расчёты / заказы</b></article>
+              <article class="employee-card"><div><strong>Дизайнер</strong><span>Дизайн · бланки · формы</span></div><b>макеты / согласования</b></article>
+              <article class="employee-card"><div><strong>Технолог</strong><span>Препресс · формы · ножи</span></div><b>технический пакет</b></article>
+              <article class="employee-card"><div><strong>Печатник</strong><span>Производство · очередь печати</span></div><b>заказы / бланки</b></article>
+              <article class="employee-card"><div><strong>Бухгалтер</strong><span>Договоры · спецификации · цены</span></div><b>финансы / настройки</b></article>
+              <article class="employee-card"><div><strong>Руководитель</strong><span>Полный доступ · контроль</span></div><b>всё</b></article>
+            </div>
+          </div>
+
+          <div class="card access-card">
+            <div class="card-head"><h3>Создание кабинета</h3></div>
+            <p>Кабинет сотрудника создаётся с логином, ролью и временным паролём. Защищённый вход появится на серверном этапе.</p>
+            <div class="employee-form-grid">
+              <label>ФИО<input value="Иванов Иван" /></label>
+              <label>Должность<input value="Менеджер по продажам" /></label>
+              <label>Логин<input value="ivanov" /></label>
+              <label>Временный пароль<input value="выдаёт руководитель" /></label>
+              <label>Роль<select><option>Менеджер</option><option>Дизайнер</option><option>Технолог</option><option>Печатник</option><option>Бухгалтер</option><option>Руководитель</option></select></label>
+              <label>Статус<select><option>Доступ включён</option><option>Доступ отключён</option><option>Ожидает активации</option></select></label>
+            </div>
+            <div class="role-rights-matrix">
+              <div class="matrix-head">Права роли</div>
+              <div><span>Клиенты</span><b>просмотр / создание / комментарии</b></div>
+              <div><span>Расчёты</span><b>создание / КП / история</b></div>
+              <div><span>Заказы</span><b>свои заказы / статусы / вопросы</b></div>
+              <div><span>Себестоимость</span><b>скрыта для менеджера</b></div>
+              <div><span>Настройки</span><b>только бухгалтер / руководитель</b></div>
+            </div>
+            <div class="notice-box">Сейчас это прототип логики: настоящие пароли нельзя хранить в HTML.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calendar" class="section">
+        <div class="card">
+          <div class="card-head wrap">
+            <div><span class="eyebrow">Календарь работы</span><h2>Личный календарь сотрудника и общий календарь компании</h2></div>
+            <button class="small-btn" id="addEventBtn">+ Событие</button>
+          </div>
+          <div class="calendar-toolbar">
+            <button class="active" data-cal-filter="mine">Мой календарь</button>
+            <button data-cal-filter="team">Команда</button>
+            <button data-cal-filter="company">Компания</button>
+            <button data-cal-filter="orders">Заказы</button>
+            <button data-cal-filter="overdue">Просрочено</button>
+          </div>
+          <div class="calendar-board" id="calendarBoard"></div>
+        </div>
+      </section>
+
+      <section id="tasks" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Доска задач</h3>
+              <div class="import-actions inline">
+                <button class="small-btn active" data-task-filter="all">Все</button>
+                <button class="small-btn" data-task-filter="mine">Мои задачи</button>
+              </div>
+            </div>
+            <div class="task-board-v7 numbered-task-board" id="tasksBoard"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Назначить задачу</h3><span class="status ok">руководитель</span></div>
+            <div class="task-form-v7">
+              <label>Кому<select id="taskAssigneeSelect"></select></label>
+              <label>Тема<input id="taskTitleInput" placeholder="Проверить следующий шаг по заказу" /></label>
+              <label>Связь<select id="taskLinkSelect"></select></label>
+              <label>Срок<input type="date" id="taskDueInput" /></label>
+              <label>Приоритет<select id="taskPrioritySelect"><option>Высокий</option><option selected>Средний</option><option>Низкий</option></select></label>
+              <label class="full">Описание<textarea id="taskDescInput" placeholder="Открыть карточку заказа, проверить причину остановки, указать следующее действие и ответственного."></textarea></label>
+            </div>
+            <button class="primary wide" id="submitTaskBtn">Назначить задачу</button>
+            <p class="muted small-text">Задача появится на доске, в фильтре «Мои задачи» исполнителя и в истории связанного клиента.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="news" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Новости компании</h3><button class="small-btn" id="publishNewsBtn">+ Новость</button></div>
+            <div class="company-feed" id="newsFeed"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Статистика прочтения</h3><span class="pill">прочтение</span></div>
+            <div class="read-stats" id="newsReadStats"></div>
+            <div class="notice-box">Новости нужны, чтобы важные правила и изменения не терялись в чатах и устных договорённостях.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="notifications" class="section">
+        <div class="card">
+          <div class="card-head wrap">
+            <h3>Уведомления</h3>
+            <button class="btn btn-ghost btn-sm" onclick="markAllReadAndRefresh()">Прочитать все</button>
+          </div>
+          <div class="order-filters" id="notifTypeFilters"></div>
+          <button class="btn btn-ghost btn-sm" id="notifUnreadToggle" onclick="toggleNotifUnreadOnly()">Только непрочитанные</button>
+          <div id="notificationsList"></div>
+        </div>
+
+        <div class="card" id="notifWarningsCard">
+          <div class="card-head"><h3>Требует внимания</h3></div>
+          <div id="notifWarningsList"></div>
+        </div>
+
+        <div class="card hidden" id="notifDirectorOversightCard">
+          <div class="card-head"><h3>История уведомлений по заказам (все сотрудники)</h3></div>
+          <div id="notifDirectorOversightList"></div>
+        </div>
+      </section>
+
+
+
+      <section id="crm" class="section">
+        <div class="crm-command-grid">
+          <article class="crm-kpi urgent"><span>Просрочено</span><strong id="kpiOverdue">0</strong><small>клиентов требуют касания</small></article>
+          <article class="crm-kpi hot"><span>Горячие</span><strong>8</strong><small>есть потребность / запрос</small></article>
+          <article class="crm-kpi"><span>Без следующего шага</span><strong id="kpiNoNextStep">0</strong><small>нужно назначить действие</small></article>
+          <article class="crm-kpi"><span>Ждём ответ</span><strong id="kpiWaiting">0</strong><small>после писем и КП</small></article>
+          <article class="crm-kpi"><span>На просчёте</span><strong id="kpiEstimating">0</strong><small>нужен расчёт стоимости</small></article>
+          <article class="crm-kpi"><span>Договор</span><strong id="kpiContract">0</strong><small>согласование условий</small></article>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card crm-daily-card">
+            <div class="card-head wrap">
+              <div><h3>Рабочий день менеджера</h3><p>Система собирает действия из клиентов, задач, календаря и воронки.</p></div>
+              <span class="pill success">Сегодня</span>
+            </div>
+            <div class="crm-action-stack">
+              <article class="crm-action overdue"><b>09:30 · Просрочено</b><strong>Повторно связаться с ООО «Фрутти»</strong><span>КП отправлено, ответа нет 2 дня. Следующий шаг: короткое письмо + звонок.</span><button class="small-btn" data-go="clients">Карточка</button></article>
+              <article class="crm-action hot"><b>11:00 · Горячий клиент</b><strong>Grass · обсудить реферальную систему</strong><span>Есть интерес к условиям, образцам и стабильности поставки.</span><button class="small-btn" data-go="clients">История</button></article>
+              <article class="crm-action"><b>14:00 · Проверка ответа</b><strong>ТМК Мясо · письмо Светлане</strong><span>Проверить реакцию на письмо, при тишине подготовить второе касание.</span><button class="small-btn" data-go="calendar">В календарь</button></article>
+              <article class="crm-action"><b>16:30 · Активный заказ</b><strong>ЭНДЖОЙ ФУД · подтвердить запуск</strong><span>Договор и бланк готовы, нужно принять заказ в работу.</span><button class="small-btn" data-go="orders">Заказ</button></article>
+            </div>
+          </div>
+
+          <div class="card crm-form-card">
+            <div class="card-head"><h3>Быстрое следующее действие</h3><span class="pill">CRM</span></div>
+            <div class="crm-next-form">
+              <label>Клиент<select id="crmFormClient"></select></label>
+              <label>Действие<select id="crmFormAction"><option>Позвонить</option><option>Написать письмо</option><option>Проверить ответ</option><option>Отправить КП</option><option>Уточнить ТЗ</option><option>Вернуться через месяц</option></select></label>
+              <label>Дата<input type="date" id="crmFormDate" /></label>
+              <label>Время<input type="time" id="crmFormTime" value="10:30" /></label>
+              <label class="full">Комментарий<textarea id="crmFormComment" placeholder="Коротко: итог звонка и следующий шаг"></textarea></label>
+            </div>
+            <button class="primary wide" id="demoCrmReminderBtn">Создать напоминание</button>
+            <div class="notice-box"><strong>В рабочей версии:</strong> действие появится в календаре менеджера, карточке клиента, уведомлениях и ежедневном списке “Сегодня”.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head wrap">
+            <div><h3>Воронка продаж менеджера</h3><p>Коммерческие статусы отделены от производственных статусов заказа.</p></div>
+          </div>
+          <div class="crm-funnel-board" id="crmFunnelBoard"></div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Клиенты без следующего шага</h3><span class="status danger">обязательный контроль</span></div>
+            <div class="crm-risk-list" id="crmRiskList"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Шаблоны быстрых действий</h3><span class="pill">для отдела продаж</span></div>
+            <div class="template-list">
+              <article><b>После первого звонка</b><span>Короткое письмо с предложением расчёта по ТЗ/макетам.</span></article>
+              <article><b>После отправки КП</b><span>Проверка получения и предложение обсудить 2–3 позиции.</span></article>
+              <article><b>После тишины</b><span>Мягкое повторное касание без давления.</span></article>
+              <article><b>После согласия на расчёт</b><span>Запрос макетов, параметров, тиражей, намотки и сроков.</span></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="clients" class="section">
+        <div class="content-grid clients-layout">
+          <div class="card client-list-card">
+            <div class="card-head">
+              <h3>Клиенты</h3>
+              <button class="small-btn" id="addClientBtn">+ Клиент</button>
+            </div>
+            <input class="search-input" id="clientSearchInput" placeholder="Поиск по названию, ИНН, городу..." />
+            <div class="client-list" id="clientListItems"></div>
+          </div>
+
+          <div class="card client-card">
+            <div class="card-head wrap">
+              <div>
+                <span class="eyebrow">Карточка клиента</span>
+                <h2 id="clientCardName">—</h2>
+              </div>
+              <span class="status ok" id="clientCardStageBadge">—</span>
+            </div>
+
+            <div class="info-grid" id="clientCardInfo">
+              <div><span>ИНН</span><strong id="clientInfoInn">—</strong></div>
+              <div><span>Город</span><strong id="clientInfoCity">—</strong></div>
+              <div><span>Сегмент</span><strong id="clientInfoSegment">—</strong></div>
+              <div><span>Ответственный</span><strong id="clientInfoManager">—</strong></div>
+            </div>
+
+            <div class="client-control-board">
+              <article>
+                <span>Стадия</span>
+                <strong id="clientBoardStage">—</strong>
+                <small id="clientBoardSource">—</small>
+              </article>
+              <article>
+                <span>Следующее действие</span>
+                <strong id="clientBoardNextAction">—</strong>
+                <small id="clientBoardNextDate">—</small>
+              </article>
+              <article>
+                <span>Последнее касание</span>
+                <strong id="clientBoardLastTouch">—</strong>
+                <small>дата последнего контакта</small>
+              </article>
+              <article>
+                <span>Открытые вопросы</span>
+                <strong id="clientOpenQuestionsBadge">0</strong>
+                <small>связаны с клиентом</small>
+              </article>
+            </div>
+
+            <div class="client-hub-panel">
+              <div>
+                <span class="eyebrow">Центр клиента</span>
+                <strong>Все связанные материалы и действия собраны в одной карточке</strong>
+              </div>
+              <div class="hub-actions">
+                <button class="small-btn" data-open-client-tab="client-tasks">+ Задача</button>
+                <button class="small-btn" data-open-client-tab="client-questions">+ Вопрос</button>
+                <button class="small-btn" data-open-client-tab="client-orders">+ Заказ</button>
+                <button class="small-btn" data-open-client-tab="client-files">Файлы</button>
+              </div>
+            </div>
+
+            <div class="tabs client-tabs">
+              <button class="tab active" data-tab="client-overview">Обзор</button>
+              <button class="tab" data-tab="history">История</button>
+              <button class="tab" data-tab="client-orders">Заказы</button>
+              <button class="tab" data-tab="client-tasks">Задачи</button>
+              <button class="tab" data-tab="client-questions">Вопросы</button>
+              <button class="tab" data-tab="client-files">Файлы</button>
+            </div>
+
+            <div class="tab-panel active" id="client-overview">
+              <div class="client-overview-grid">
+                <div class="overview-card">
+                  <span>Следующий шаг</span>
+                  <strong id="clientOverviewNextAction">—</strong>
+                  <p id="clientOverviewNextDate">—</p>
+                </div>
+                <div class="overview-card">
+                  <span>Последнее касание</span>
+                  <strong id="clientOverviewLastTouch">—</strong>
+                  <p>Дата последнего звонка, письма или встречи.</p>
+                </div>
+                <div class="overview-card">
+                  <span>Источник</span>
+                  <strong id="clientOverviewSource">—</strong>
+                  <p id="clientOverviewSegment">—</p>
+                </div>
+                <div class="overview-card">
+                  <span>Комментарий</span>
+                  <strong id="clientOverviewComment">—</strong>
+                  <p>Свободное поле менеджера по клиенту.</p>
+                </div>
+              </div>
+              <div class="hub-cards">
+                <button data-open-client-tab="client-files"><b>Файлы клиента</b><span>единое хранилище документов и макетов</span></button>
+                <button data-open-client-tab="client-questions"><b>История вопросов</b><span>все вопросы по клиенту</span></button>
+                <button data-open-client-tab="history"><b>История взаимодействия</b><span>последовательная цепочка действий</span></button>
+              </div>
+            </div>
+
+            <div class="tab-panel" id="history">
+              <div class="timeline-controls">
+                <input id="historyInput" placeholder="Добавить комментарий в историю клиента..." />
+                <button id="addHistoryBtn" class="primary">Добавить</button>
+              </div>
+              <div class="timeline" id="clientTimeline"></div>
+            </div>
+
+            <div class="tab-panel" id="client-orders">
+              <div class="timeline-controls">
+                <input id="clientOrderTitleInput" placeholder="Название заказа..." />
+                <input id="clientOrderRunInput" type="number" min="1" placeholder="Тираж" />
+                <input id="clientOrderShipInput" type="date" />
+                <button id="addClientOrderBtn" class="primary">+ Заказ</button>
+              </div>
+              <div class="mini-table linked-list" id="clientOrdersList"></div>
+            </div>
+
+            <div class="tab-panel" id="client-tasks">
+              <div class="timeline-controls">
+                <input id="clientTaskTitleInput" placeholder="Тема задачи..." />
+                <input id="clientTaskDateInput" type="date" />
+                <button id="addClientTaskBtn" class="primary">+ Задача</button>
+              </div>
+              <div class="mini-table linked-list" id="clientTasksList"></div>
+            </div>
+
+            <div class="tab-panel" id="client-questions">
+              <div class="timeline-controls">
+                <input id="clientQuestionTitleInput" placeholder="Тема вопроса..." />
+                <button id="addClientQuestionBtn" class="primary">+ Вопрос</button>
+              </div>
+              <div class="mini-table linked-list" id="clientQuestionHistory"></div>
+            </div>
+            <div class="tab-panel" id="client-files">
+              <div class="file-toolbar">
+                <div>
+                  <strong>Файловое пространство клиента</strong>
+                  <span>Договоры, спецификации, макеты, бланки, письма, ТЗ и любые рабочие файлы клиента.</span>
+                </div>
+                <label class="upload-mini">+ Добавить файлы
+                  <input id="clientFileUpload" type="file" multiple />
+                </label>
+              </div>
+              <div class="file-context-panel">
+                <span>Файл можно связать с:</span>
+                <b>клиентом</b><b>договором</b><b>расчётом</b><b>заказом</b><b>бланком</b><b>вопросом</b>
+              </div>
+              <div class="file-filters" id="clientFileFilters"></div>
+              <div class="file-grid file-vault" id="clientFileVault"></div>
+              <p class="muted">В прототипе сохраняются названия и категории файлов. В рабочей версии файлы будут храниться на сервере или в корпоративном облаке и привязываться к клиенту, заказу, расчёту или бланку.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="import" class="section">
+        <div class="content-grid two import-grid">
+          <div class="card">
+            <div class="card-head wrap"><h3>1. Загрузка таблицы</h3><span class="pill">Excel / CSV / Google Sheets</span></div>
+            <div class="import-actions">
+              <a class="button-link" href="assets/Шаблон_импорта_клиентов_ART-LINE_OS.xlsx" download>Скачать XLSX-шаблон</a>
+              <a class="button-link" href="assets/Шаблон_импорта_клиентов_ART-LINE_OS.csv" download>Скачать CSV-шаблон</a>
+            </div>
+            <div class="source-grid">
+              <label class="upload-box">
+                <strong>Загрузить файл</strong>
+                <span>CSV уже разбирается в прототипе. XLSX заложен как формат для рабочей серверной версии.</span>
+                <input id="importFile" type="file" accept=".csv,.txt,.xlsx,.xls" />
+              </label>
+              <button class="source-card" id="loadSampleBtn" type="button">
+                <strong>Загрузить пример из базы лидов</strong>
+                <span>Демо-данные из структуры Google Sheets: компания, контакты, статус, следующий шаг.</span>
+              </button>
+            </div>
+            <label class="field-label">Или вставьте строки из таблицы вручную</label>
+            <textarea id="importText" class="import-textarea" placeholder="Вставьте CSV/таблицу: Компания; Контакты; Статус; Следующий шаг..."></textarea>
+            <div class="import-actions">
+              <button class="primary" id="analyzeImportBtn">Разбор и предпросмотр</button>
+              <button class="secondary" id="clearImportBtn">Очистить</button>
+            </div>
+            <div class="notice-box">
+              <strong>Правило безопасности:</strong> импорт не выполняется автоматически. Сначала система показывает сопоставление колонок, дубли и примеры карточек. Карточки создаются только после подтверждения менеджера.
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>2. Что создаётся из таблицы</h3></div>
+            <div class="ai-flow">
+              <div><b>Колонки</b><span>Компания, ИНН, контакты, ЛПР, статус, комментарии</span></div>
+              <div><b>Карточки клиентов</b><span>Название, сегмент, ответственный, контактные лица</span></div>
+              <div><b>История</b><span>Дата касания, результат, что отправлено, следующий шаг</span></div>
+              <div><b>Контроль качества</b><span>Дубли, пустые контакты, непонятные статусы</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Сопоставление колонок</h3><span class="status warning" id="mappingStatus">Ожидает данных</span></div>
+            <div id="mappingTable" class="mapping-table empty-state">Здесь появится таблица: колонка из файла → поле ART-LINE OS.</div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Проверка и дубли</h3><span class="pill" id="importStats">0 строк</span></div>
+            <div id="qualityReport" class="quality-report empty-state">После анализа появится список найденных дублей, пустых контактов и замечаний.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head wrap">
+            <h3>Предпросмотр будущих карточек</h3>
+            <div class="import-actions inline"><button class="primary" id="confirmImportBtn" disabled>Подтвердить импорт и создать карточки</button></div>
+          </div>
+          <div id="importPreview" class="preview-grid empty-state">Пока нет данных для предпросмотра.</div>
+        </div>
+      </section>
+
+
+      <section id="funnel" class="section">
+        <div class="card">
+          <div class="card-head"><h3>Воронка продаж до договора</h3><span class="pill">CRM</span></div>
+          <div class="kanban">
+            <div class="lane"><h4>Контакт</h4><div class="task">Новый клиент · запрос вводных</div></div>
+            <div class="lane"><h4>Потребность</h4><div class="task">Уточнить тиражи, материалы, сроки</div></div>
+            <div class="lane"><h4>Предварительный расчёт</h4><div class="task">3 варианта тиража · КП отправлено</div></div>
+            <div class="lane"><h4>Договор</h4><div class="task hot">Согласовать отсрочку и сроки</div></div>
+            <div class="lane"><h4>Активный клиент</h4><div class="task done">Ждём реальную потребность</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculations" class="section">
+        <div class="card"><div class="empty-state">Раздел в разработке.</div></div>
+      </section>
+
+      <section id="calculator" class="section">
+        <div class="card">
+          <div class="card-head wrap">
+            <div><h3>Калькулятор</h3><p>Действующий расчётный модуль открывается внутри ART-LINE OS.</p></div>
+            <a class="button-link" href="calculator.html" target="_blank">Открыть отдельно</a>
+          </div>
+          <iframe class="calc-frame" src="calculator.html" title="Калькулятор Арт-Лайн"></iframe>
+        </div>
+      </section>
+
+      <section id="contracts" class="section">
+        <div class="card"><div class="empty-state">Раздел в разработке.</div></div>
+      </section>
+
+      <section id="requests" class="section">
+        <div class="card"><div class="empty-state">Раздел в разработке.</div></div>
+      </section>
+
+      <section id="specifications" class="section">
+        <div class="card"><div class="empty-state">Раздел в разработке.</div></div>
+      </section>
+
+      <section id="orders" class="section">
+        <div id="ordersList"></div>
+      </section>
+
+      <section id="approvals" class="section">
+        <div class="card">
+          <div class="card-head"><h3>Черновики <span class="muted" id="approvalsDraftCount">0</span></h3></div>
+          <table class="report-table">
+            <thead><tr><th>№ заказа</th><th>Клиент</th><th>Версия</th><th>Отправлен</th><th>Ждём</th><th>Действия</th></tr></thead>
+            <tbody id="approvalsDraftBody"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>На согласовании у клиента <span class="muted" id="approvalsSentCount">0</span></h3></div>
+          <table class="report-table">
+            <thead><tr><th>№ заказа</th><th>Клиент</th><th>Версия</th><th>Отправлен</th><th>Ждём</th><th>Действия</th></tr></thead>
+            <tbody id="approvalsSentBody"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Подписаны <span class="muted" id="approvalsSignedCount">0</span></h3></div>
+          <table class="report-table">
+            <thead><tr><th>№ заказа</th><th>Клиент</th><th>Версия</th><th>Подписан</th><th>Кто подписал</th><th>Действия</th></tr></thead>
+            <tbody id="approvalsSignedBody"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Отклонены <span class="muted" id="approvalsRejectedCount">0</span></h3></div>
+          <table class="report-table">
+            <thead><tr><th>№ заказа</th><th>Клиент</th><th>Версия</th><th>Дата</th><th>Причина</th><th>Действия</th></tr></thead>
+            <tbody id="approvalsRejectedBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="questions" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Создать вопрос по заказу</h3></div>
+            <div class="question-form">
+              <input id="qTitle" placeholder="Тема вопроса" />
+              <textarea id="qText" placeholder="Опишите проблему"></textarea>
+              <select id="qStage">
+                <option>Бланк согласования</option>
+                <option>Подготовка макета</option>
+                <option>Формы</option>
+                <option>Нож</option>
+                <option>Печать</option>
+                <option>Отгрузка</option>
+              </select>
+              <select id="qAddressee"></select>
+              <select id="qOrderLink"></select>
+              <div class="recipient-grid">
+                <label><input type="checkbox" value="Менеджер" checked /> Менеджер</label>
+                <label><input type="checkbox" value="Дизайнер" checked /> Дизайнер</label>
+                <label><input type="checkbox" value="Руководитель" /> Руководитель</label>
+                <label><input type="checkbox" value="Бухгалтер" /> Бухгалтер</label>
+                <label><input type="checkbox" value="Технолог" checked /> Технолог</label>
+                <label><input type="checkbox" value="Печатник" /> Печатник</label>
+              </div>
+              <button class="primary" id="createQuestionBtn">Создать вопрос и уведомить</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Открытые вопросы</h3>
+              <div class="import-actions inline">
+                <button class="small-btn active" data-question-filter="all">Все</button>
+                <button class="small-btn" data-question-filter="mine">Мои вопросы</button>
+                <span class="pill" id="questionCount">3</span>
+              </div>
+            </div>
+            <div class="notice-box">Каждый вопрос получает номер ВОП-0000, конкретного адресата и статус. Открытый вопрос влияет на риск заказа (видно бейджем на карточке заказа).</div>
+            <div id="questionList" class="question-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tooling" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Ножи</h3><span class="status warning">проверить</span></div>
+            <div class="status-list vertical">
+              <span class="active">Используем существующий нож</span>
+              <span>Нужно заказать</span>
+              <span>Заказан</span>
+              <span>В изготовлении</span>
+              <span>Получен</span>
+              <span>Готов к работе</span>
+            </div>
+            <p class="muted">Нож может заказать бухгалтер или дизайнер, если по заказу нельзя использовать архивный.</p>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Флексоформы</h3><span class="status warning">готовятся</span></div>
+            <div class="status-list vertical">
+              <span>Не требуются</span>
+              <span class="active">Макет готовится</span>
+              <span>Формы заказаны</span>
+              <span>Формы получены</span>
+              <span>Переданы печатнику</span>
+            </div>
+            <p class="muted">Флексоформы заказывает дизайнер после подготовки макета. Технолог комплектует пакет для печатника.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="production" class="section production-section">
+        <div class="card" id="productionLoadCard">
+          <div class="card-head"><h3>Загрузка станков</h3></div>
+          <div id="productionMachineLoad"></div>
+        </div>
+
+        <div class="card" id="productionPlanCard">
+          <div class="card-head wrap">
+            <h3 id="productionPlanTitle">Производственный план</h3>
+            <div class="order-filters" id="productionMachineFilters"></div>
+          </div>
+          <div id="productionPlanList"></div>
+        </div>
+
+        <div class="card" id="productionQueueCard">
+          <div class="card-head"><h3>Очередь печати</h3></div>
+          <div id="productionQueueList"></div>
+        </div>
+      </section>
+
+
+      <section id="finance" class="section">
+        <div class="card">
+          <div class="card-head wrap">
+            <h3>Сводка</h3>
+            <div class="order-filters" id="financePeriodFilters">
+              <button data-period="month">Месяц</button>
+              <button data-period="quarter">Квартал</button>
+              <button data-period="year">Год</button>
+              <button data-period="all" class="active">Всё время</button>
+            </div>
+          </div>
+          <div class="finance-kpi-grid" id="financeKpiGrid"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Оплаты по заказам</h3></div>
+          <div class="finance-table" id="financePayments"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Долги</h3></div>
+          <div id="financeReceivablesSummary"></div>
+          <div class="problem-list" id="financeReceivables"></div>
+        </div>
+      </section>
+
+
+      <section id="documents" class="section">
+        <div class="card">
+          <div class="card-head wrap">
+            <h3>Реестр документов</h3>
+            <button class="small-btn" onclick="openUploadDocumentModal()">Загрузить документ</button>
+          </div>
+          <input class="search-input" id="documentSearchInput" placeholder="Поиск по названию, номеру документа или заказа..." />
+          <div class="order-filters" id="documentTypeFilters"></div>
+          <button class="btn btn-ghost btn-sm" id="documentArchiveToggle" onclick="toggleDocumentArchive()">Показать архив</button>
+          <table class="report-table">
+            <thead>
+              <tr><th>№</th><th>Тип</th><th>Название</th><th>Версия</th><th>Связан с</th><th>Загрузил</th><th>Дата</th><th>Статус</th><th>Действия</th></tr>
+            </thead>
+            <tbody id="documentsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <section id="ai" class="section">
+        <div class="card"><div class="empty-state">Раздел в разработке.</div></div>
+      </section>
+
+      <section id="settings" class="section">
+        <div class="card">
+          <div class="card-head"><h3>Настройки будущей системы</h3></div>
+          <div class="settings-grid">
+            <div>Пользователи и роли</div><div>Материалы и цены</div><div>Импорт таблиц</div><div>Шаблоны договора</div><div>Шаблоны спецификации</div><div>Шаблоны бланков</div><div>Уведомления</div><div>Статусы заказов</div><div>Права доступа</div><div>Счета и отсрочки</div><div>Шаблоны задач</div><div>Нумерация задач и вопросов</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="mobile-bottom-nav-v15" id="mobileBottomNavV15">
+      <button data-go="dashboard" class="active"><span>⌂</span>Главная</button>
+      <button data-go="clients"><span>◎</span>Клиенты</button>
+      <button data-go="orders"><span>▣</span>Заказы</button>
+      <button data-go="tasks"><span>✓</span>Задачи</button>
+      <button data-go="settings"><span>☰</span>Ещё</button>
+    </nav>
+
+    <!-- один оверлей на все модалки FSM (assignTo/comment) — openModal() в orders.js меняет содержимое -->
+    <div class="modal-overlay hidden" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+      <div class="modal-box" id="modalBox"></div>
+    </div>
+  </div>
+  <!-- Фаза 0: светлый каркас. reference_data.js/store.js — данные в памяти,
+       shell.js — навигация/applyRole (очищенная копия client_reference/app.js).
+       Фаза 2: orders.js — FSM заказов, перенесена из корневого app.js. -->
+  <script src="assets/sortable.min.js"></script>
+  <script src="reference_data.js"></script>
+  <script src="store.js"></script>
+  <script src="shell.js"></script>
+  <script src="orders.js"></script>
+  <script src="clients.js"></script>
+  <script src="tasks.js"></script>
+  <script src="questions.js"></script>
+  <script src="news.js"></script>
+  <script src="calendar.js"></script>
+  <script src="finance.js"></script>
+  <script src="production.js"></script>
+  <script src="approvals.js"></script>
+  <script src="documents.js"></script>
+  <script src="notifications.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "ART-LINE OS v1.6 — Финальный аудит и подготовка к серверу",
+  "short_name": "ART-LINE OS",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F4F1EA",
+  "theme_color": "#151821",
+  "description": "Корпоративная система Арт-Лайн: финальный аудит прототипа, тестовые сценарии, роли, права, блокировки, карта данных, мобильная PWA и подготовка к серверу.",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

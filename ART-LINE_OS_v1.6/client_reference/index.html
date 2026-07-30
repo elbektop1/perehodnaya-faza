@@ -1,0 +1,2506 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ART-LINE OS v1.6 · Финальный аудит и подготовка к серверу</title>
+  <meta name="theme-color" content="#151821" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="ART-LINE OS" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="startup-screen-v15" id="startupScreenV15"><strong>ART-LINE OS</strong><span>Загрузка мобильного рабочего пространства...</span></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand no-logo">
+        <div>
+          <strong>ART-LINE OS</strong>
+          <span>v1.6 · Финальный аудит и подготовка к серверу</span>
+        </div>
+      </div>
+
+      <div class="role-panel">
+        <label for="roleSelect">Кабинет</label>
+        <select id="roleSelect">
+          <option value="manager">Менеджер</option>
+          <option value="designer">Дизайнер</option>
+          <option value="technologist">Технолог</option>
+          <option value="printer">Печатник</option>
+          <option value="accountant">Бухгалтер</option>
+          <option value="leader">Руководитель</option>
+        </select>
+      </div>
+
+      <nav class="nav" id="mainNav">
+        <button data-section="dashboard" class="active">Главная</button>
+        <button data-section="pulse">Пульс компании</button>
+        <button data-section="workflow">Сквозная логика</button>
+        <button data-section="mobilepwa">Мобильная версия</button>
+        <button data-section="audit">Аудит v1.6</button>
+        <button data-section="clients">Клиенты</button>
+        <button data-section="crm">CRM</button>
+        <button data-section="workspace">Рабочий стол</button>
+        <button data-section="employees">Сотрудники</button>
+        <button data-section="calendar">Календарь</button>
+        <button data-section="tasks">Задачи</button>
+        <button data-section="news">Новости</button>
+        <button data-section="notifications">Уведомления</button>
+        <button data-section="import">Импорт базы</button>
+        <button data-section="funnel">Воронка</button>
+        <button data-section="calculator">Калькулятор</button>
+        <button data-section="calculations">Расчёты</button>
+        <button data-section="contracts">Договоры</button>
+        <button data-section="requests">Запросы</button>
+        <button data-section="specifications">Спецификации</button>
+        <button data-section="orders">Заказы</button>
+        <button data-section="approvals">Бланки согласования</button>
+        <button data-section="questions">Вопросы</button>
+        <button data-section="tooling">Ножи и формы</button>
+        <button data-section="production">Производство</button>
+        <button data-section="finance">Финансы</button>
+        <button data-section="documents">Документы</button>
+        <button data-section="ai">ИИ</button>
+        <button data-section="settings">Настройки</button>
+      </nav>
+
+      <div class="side-note">
+        <span>Цепочка:</span>
+        контакт → клиент → расчёт → документы → заказ → производство → мобильный контроль
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div>
+          <h1 id="pageTitle">Главная</h1>
+          <p id="pageSubtitle">Контроль клиента, договора, заказа и производства в одном месте.</p>
+        </div>
+        <div class="user-card">
+          <span id="roleName">Менеджер</span>
+          <strong>Овечкин Константин</strong>
+        </div>
+      </header>
+
+      <section id="dashboard" class="section active-section">
+        <div class="hero-card">
+          <div>
+            <span class="eyebrow">Мобильный этап</span>
+            <h2>ART-LINE OS готовится к работе как мобильное PWA-приложение для менеджера, руководителя и производства</h2>
+            <p>В v1.6 добавлен финальный аудит системы: тестовые сценарии, чек-листы готовности заказа, матрица прав доступа, красные зоны перед сервером, правила блокировок, журнал действий, карта данных и план внедрения.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-go="audit">Аудит v1.6</button>
+            <button class="secondary" data-go="mobilepwa">Мобильная версия</button>
+            <button class="secondary" data-go="workflow">Сквозная логика</button>
+            <button class="secondary" data-go="pulse">Пульс компании</button>
+            <button class="secondary" data-go="orders">Открыть заказ</button>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article><span>Сегодня у менеджера</span><strong>14</strong><small>касания, задачи и напоминания</small></article>
+          <article><span>Сотрудники</span><strong>10</strong><small>роли и личные кабинеты</small></article>
+          <article><span>CRM-клиенты</span><strong>42</strong><small>8 горячих, 6 без шага</small></article>
+          <article><span>В производстве</span><strong>18</strong><small>5 ждут сырьё / формы</small></article>
+          <article><span>Договоры</span><strong>7</strong><small>2 на согласовании</small></article>
+          <article><span>Просрочено</span><strong>5</strong><small>нужны повторные касания</small></article>
+          <article><span>Вопросы по заказам</span><strong id="questionCountBadge">3</strong><small>1 срочный</small></article>
+          <article><span>Импортировано клиентов</span><strong id="importedCountBadge">0</strong><small>через таблицы менеджеров</small></article>
+          <article><span>Файлы клиента</span><strong id="clientFilesBadge">6</strong><small>договоры, ТЗ, макеты, бланки</small></article>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head">
+              <h3>Главная цепочка</h3>
+              <span class="pill success">v1.4</span>
+            </div>
+            <div class="process-chain">
+              <span>Контакт</span><b>→</b><span>Расчёт</span><b>→</b><span>Договор</span><b>→</b><span>Документы</span><b>→</b><span>Заказ</span><b>→</b><span>Производство</span><b>→</b><span>Финансы</span><b>→</b><span>Сквозная логика</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Что добавлено</h3></div>
+            <ul class="check-list">
+              <li>Этап согласования договора до запуска реальных заказов.</li>
+              <li>Спецификация как отдельный документ к договору.</li>
+              <li>Кнопка «Принять заказ в работу» после всех согласований.</li>
+              <li>Внутренние вопросы/подзадачи с выбором адресатов.</li>
+              <li>Подэтапы по ножам, флексоформам, технологу и печатнику.</li>
+              <li>Импорт клиентских таблиц менеджеров с ИИ-разбором и предпросмотром.</li>
+              <li>Клиентский центр стал основным узлом: из клиента можно перейти во все связанные процессы, а из заказа, бланка, расчёта или вопроса — обратно к клиенту.</li>
+              <li>Карточка заказа стала рабочим штабом: контроль допуска, этапы, вопросы, файлы, ножи, формы и запуск в печать.</li>
+              <li>Добавлены сотрудники, роли, личные кабинеты, рабочий стол, календарь, задачи, новости и центр уведомлений.</li>
+              <li>Добавлена глубокая CRM менеджера: воронка, напоминания, горячие клиенты, клиенты без следующего шага, шаблоны и ИИ-помощник.</li>
+              <li>Добавлен производственный план на основе вашей таблицы заказов: активные заказы, отгружено, брак/перепечатка, сток, пульс заказа, проблемные заказы и загрузка машин.</li>
+            <li>Добавлен этап v1.0: сквозные номера задач и вопросов, автоматические задачи при запуске заказа, причина остановки, текущее ответственное лицо, история действий, базовый финансовый контроль, отсрочка с согласованием руководителя и график платежей.</li>
+              <li>Добавлен этап v1.1: полноценный финансовый контур — карточка счёта, финансовая карточка клиента, лимит отсрочки, просрочки, частичные оплаты, допуск к отгрузке и финансовая история.</li>
+              <li>Добавлен этап v1.2: документный контур — номера и версии документов, статусы, проверка заполненности, производственный пакет, документ “изменения по повторному заказу”, хранилище документов клиента и проверка расхождений.</li>
+              <li>Добавлен этап v1.3: “Пульс компании” — управленческий центр руководителя, решения на сегодня, критические риски, зависшие процессы, карта узких мест, деньги рядом, нагрузка сотрудников и быстрые управленческие действия.</li>
+              <li>Добавлен этап v1.4: сквозная логика — карта пути заказа, единый профиль объекта, хлебные крошки, связи, глобальный поиск, быстрые действия, единые статусы и подсказка следующего шага.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="workflow" class="section">
+        <div class="hero-card workflow-hero-v14">
+          <div>
+            <span class="eyebrow">Сквозная логика · v1.4</span>
+            <h2>Один рабочий маршрут: от первого контакта до закрытия заказа и истории клиента</h2>
+            <p>Эта версия сшивает все разделы в единый сценарий: сотрудник видит путь заказа, связанные объекты, текущее состояние, следующий шаг и быстрые действия без переходов вслепую.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-scroll-workflow="processMap">Карта процесса</button>
+            <button class="secondary" data-scroll-workflow="globalSearchCard">Глобальный поиск</button>
+          </div>
+        </div>
+
+        <div class="workflow-map-card" id="processMap">
+          <div class="card-head">
+            <h3>Сквозная карта процесса заказа</h3>
+            <span class="pill success">рабочая навигация</span>
+          </div>
+          <div class="workflow-route" id="workflowRoute">
+            <button data-stage-go="clients"><b>01</b><span>Лид / клиент</span><small>КЛ-0007</small></button>
+            <button data-stage-go="crm"><b>02</b><span>CRM и касания</span><small>следующий шаг</small></button>
+            <button data-stage-go="calculations"><b>03</b><span>Расчёт / КП</span><small>РСЧ-0048</small></button>
+            <button data-stage-go="contracts"><b>04</b><span>Договор</span><small>ДОГ-0008</small></button>
+            <button data-stage-go="orders"><b>05</b><span>Заказ</span><small>ЗАК-0187</small></button>
+            <button data-stage-go="documents"><b>06</b><span>Документы</span><small>СПЦ · БЛН · ПРП</small></button>
+            <button data-stage-go="finance"><b>07</b><span>Финансы</span><small>СЧ-1319</small></button>
+            <button data-stage-go="production"><b>08</b><span>Производство</span><small>очередь</small></button>
+            <button data-stage-go="questions"><b>09</b><span>Задачи / вопросы</span><small>ЗАД · ВОП</small></button>
+            <button data-stage-go="production"><b>10</b><span>Отгрузка</span><small>фин. допуск</small></button>
+            <button data-stage-go="clients"><b>11</b><span>История клиента</span><small>вся лента</small></button>
+          </div>
+          <div class="workflow-stage-info" id="workflowStageInfo">
+            <strong>Текущий этап: Производственный пакет</strong>
+            <span>Пройдено: клиент, расчёт, договор, спецификация, счёт. Осталось: печать, отгрузка, контроль оплаты и закрытие.</span>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card object-profile-card">
+            <div class="breadcrumb-demo">Пульс компании → Проблемные заказы → ЗАК-0187 → Документы → БЛН-0041</div>
+            <div class="object-profile-head">
+              <div>
+                <span class="eyebrow">Единый профиль объекта</span>
+                <h3>ЗАК-0187 · ООО «ЭНДЖОЙ ФУД»</h3>
+                <p>Любой объект в системе — заказ, счёт, задача, вопрос, бланк или спецификация — должен иметь одинаковую верхнюю логику.</p>
+              </div>
+              <span class="risk-dot high">Высокий риск</span>
+            </div>
+            <div class="object-profile-grid">
+              <article><span>Статус</span><strong>Ожидает документов</strong></article>
+              <article><span>Ответственный</span><strong>Менеджер</strong></article>
+              <article><span>Следующее действие</span><strong>Получить подпись БЛН-0041</strong></article>
+              <article><span>Связи</span><strong>8 объектов</strong></article>
+            </div>
+            <div class="quick-actions-row">
+              <button class="small-btn" data-demo-action="task">Создать задачу</button>
+              <button class="small-btn" data-demo-action="question">Создать вопрос</button>
+              <button class="small-btn" data-demo-action="responsible">Назначить ответственного</button>
+              <button class="small-btn" data-demo-action="comment">Добавить комментарий</button>
+            </div>
+          </div>
+
+          <div class="card" id="globalSearchCard">
+            <div class="card-head">
+              <h3>Глобальный поиск</h3>
+              <span class="pill">по всей OS</span>
+            </div>
+            <div class="global-search-box">
+              <input id="globalSearchInput" value="ЭНДЖОЙ ФУД" placeholder="Компания, ИНН, ЗАК-0187, СЧ-1319, БЛН-0041, задача..." />
+              <button class="primary" id="globalSearchBtn">Найти</button>
+            </div>
+            <div class="global-search-results" id="globalSearchResults">
+              <button data-go="clients"><b>КЛ-0007</b><span>Карточка клиента · ООО «ЭНДЖОЙ ФУД»</span></button>
+              <button data-go="orders"><b>ЗАК-0187</b><span>Заказ · Попкорн 100×100 · 60 000 шт.</span></button>
+              <button data-go="finance"><b>СЧ-1319</b><span>Счёт · 70 000 ₽ · ожидает оплаты</span></button>
+              <button data-go="documents"><b>БЛН-0041</b><span>Бланк согласования · версия 3 · ждём подпись</span></button>
+              <button data-go="tasks"><b>ЗАД-0142</b><span>Задача дизайнеру · подготовить бланк</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Вкладка «Связи» в заказе</h3><span class="pill warning">центр объекта</span></div>
+            <div class="links-map-v14">
+              <div class="node main">ЗАК-0187<br><small>Заказ</small></div>
+              <div class="link-row"><span>КЛ-0007 · Клиент</span><button data-go="clients">Открыть</button></div>
+              <div class="link-row"><span>ДОГ-0008 · Договор</span><button data-go="contracts">Открыть</button></div>
+              <div class="link-row"><span>СПЦ-0024 · Спецификация</span><button data-go="documents">Открыть</button></div>
+              <div class="link-row"><span>СЧ-1319 · Счёт</span><button data-go="finance">Открыть</button></div>
+              <div class="link-row"><span>БЛН-0041 · Бланк</span><button data-go="documents">Открыть</button></div>
+              <div class="link-row"><span>ПРП-0017 · Производственный пакет</span><button data-go="documents">Открыть</button></div>
+              <div class="link-row"><span>ЗАД-0142 / ВОП-0031 · Контроль</span><button data-go="tasks">Открыть</button></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Что делать дальше?</h3><span class="pill danger">нет тупиков</span></div>
+            <div class="next-actions-v14">
+              <article class="danger"><b>1</b><strong>Получить подпись бланка</strong><span>БЛН-0041 отправлен клиенту, но не подписан. Ответственный: менеджер.</span></article>
+              <article class="warning"><b>2</b><strong>Проверить финансовый допуск</strong><span>СЧ-1319 ожидает оплату. Отгрузка возможна только после оплаты или решения руководителя.</span></article>
+              <article><b>3</b><strong>Закрыть вопрос ВОП-0031</strong><span>Технолог ждёт ответ по направлению намотки.</span></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Единый стандарт статусов и рисков</h3></div>
+            <div class="status-standard-grid">
+              <span class="status-chip draft">Черновик</span>
+              <span class="status-chip wait">Ожидает действия</span>
+              <span class="status-chip work">В работе</span>
+              <span class="status-chip approve">На согласовании</span>
+              <span class="status-chip problem">Есть проблема</span>
+              <span class="status-chip done">Готово</span>
+              <span class="status-chip archive">Архив</span>
+            </div>
+            <div class="risk-guide-v14">
+              <span><i class="r critical"></i>Критично</span>
+              <span><i class="r high"></i>Высокий риск</span>
+              <span><i class="r medium"></i>Требует внимания</span>
+              <span><i class="r ok"></i>Нормально</span>
+              <span><i class="r muted"></i>Архив</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Не заполнено / опасные места</h3><span class="pill danger">проверка</span></div>
+            <div class="danger-gaps-v14">
+              <article><strong>Не указан ответственный технолог</strong><span>Заказ не должен стоять без текущего ответственного.</span><button data-go="orders">Исправить</button></article>
+              <article><strong>Нет подписанного бланка</strong><span>БЛН-0041 отправлен клиенту, но подписанный PDF не загружен.</span><button data-go="documents">Открыть</button></article>
+              <article><strong>Нет следующего CRM-действия</strong><span>У клиента есть КП без ответа, но нет даты следующего касания.</span><button data-go="crm">Назначить</button></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Единая история клиента</h3><span class="pill success">вся жизнь отношений</span></div>
+          <div class="unified-history-v14">
+            <article><span>11.07 · CRM</span><strong>Менеджер поставил следующее действие</strong><small>Позвонить клиенту после отправки спецификации.</small></article>
+            <article><span>11.07 · Документы</span><strong>Создана СПЦ-0024 / версия 2</strong><small>Изменён тираж, сумма и срок поставки.</small></article>
+            <article><span>11.07 · Финансы</span><strong>СЧ-1319 ожидает оплату</strong><small>70 000 ₽, срок оплаты не подтверждён.</small></article>
+            <article><span>11.07 · Производство</span><strong>Заказ ЗАК-0187 ожидает бланк</strong><small>Следующее действие: получить подпись клиента.</small></article>
+            <article><span>11.07 · Вопрос</span><strong>ВОП-0031 по намотке</strong><small>Технолог ждёт ответ менеджера.</small></article>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="pulse" class="section">
+        <div class="hero-card pulse-hero-v13">
+          <div>
+            <span class="eyebrow">Центр руководителя · v1.4</span>
+            <h2>Пульс компании: один экран для решений, рисков, денег, производства и людей</h2>
+            <p>Командный экран руководителя показывает не только статистику, а конкретные решения на сегодня: где заказ стоит без движения, где нет оплаты, какой документ не подписан, кто должен ответить и какие процессы тормозят компанию.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" id="onlyProblemsBtn">Показать только проблемное</button>
+            <button class="secondary" data-go="tasks">Назначить задачу</button>
+          </div>
+        </div>
+
+        <div class="pulse-kpi-grid">
+          <article><span>Заказов в работе</span><strong>18</strong><small>5 требуют внимания</small></article>
+          <article class="warning"><span>Открытых вопросов</span><strong>7</strong><small>2 без ответа более суток</small></article>
+          <article class="danger"><span>Просроченных задач</span><strong>4</strong><small>нужно назначить ответственных</small></article>
+          <article><span>КП без ответа</span><strong>9</strong><small>по 4 клиентам нет следующего шага</small></article>
+          <article class="money"><span>Ожидается оплат</span><strong>420 000 ₽</strong><small>на этой неделе</small></article>
+          <article class="danger"><span>Просрочено оплат</span><strong>95 000 ₽</strong><small>1 счёт требует звонка</small></article>
+        </div>
+
+        <div class="content-grid two pulse-main-grid">
+          <div class="card leader-decision-card">
+            <div class="card-head">
+              <h3>Сегодня нужно решить</h3>
+              <span class="pill danger">5 решений</span>
+            </div>
+            <div class="decision-list">
+              <article data-problem="critical">
+                <b>Критично</b>
+                <strong>Разрешить или запретить отгрузку ЗАК-0187</strong>
+                <span>Заказ готов к отгрузке, но оплата не подтверждена и отсрочка ещё не согласована.</span>
+                <div class="decision-actions"><button class="small-btn">Разрешить отгрузку</button><button class="small-btn">Открыть заказ</button></div>
+              </article>
+              <article data-problem="high">
+                <b>Высокий риск</b>
+                <strong>Согласовать отсрочку ОТС-0007 на 30 дней</strong>
+                <span>Менеджер указал 30 дней от даты отгрузки. Сумма заказа 70 000 ₽, клиент работает по договору.</span>
+                <div class="decision-actions"><button class="small-btn">Согласовать</button><button class="small-btn">Запросить комментарий</button></div>
+              </article>
+              <article data-problem="high">
+                <b>Высокий риск</b>
+                <strong>Назначить ответственного по заказу без движения</strong>
+                <span>Заказ стоит 2 дня. Причина: ожидаем формы. Текущий ответственный не назначен.</span>
+                <div class="decision-actions"><button class="small-btn">Назначить технолога</button><button class="small-btn">Создать задачу</button></div>
+              </article>
+              <article data-problem="medium">
+                <b>Средний риск</b>
+                <strong>Проверить расхождение СПЦ-0024 / БЛН-0041</strong>
+                <span>В спецификации тираж 30 000 шт., в бланке согласования указано 20 000 шт.</span>
+                <div class="decision-actions"><button class="small-btn">Открыть документы</button><button class="small-btn">Назначить проверку</button></div>
+              </article>
+              <article data-problem="medium">
+                <b>Средний риск</b>
+                <strong>Клиент без следующего шага</strong>
+                <span>ООО «ТМК Мясо»: КП отправлено, но следующее действие не назначено.</span>
+                <div class="decision-actions"><button class="small-btn">Поставить касание</button><button class="small-btn">К клиенту</button></div>
+              </article>
+            </div>
+          </div>
+
+          <div class="card risk-map-card">
+            <div class="card-head"><h3>Карта рисков</h3><span class="pill warning">умная причина риска</span></div>
+            <div class="risk-stack">
+              <article class="risk-critical" data-problem="critical"><span>Финансовый риск</span><strong>Готово к отгрузке, но нет оплаты</strong><small>Причина: счёт выставлен, оплата не поступила, отсрочка ждёт решения руководителя.</small></article>
+              <article class="risk-high" data-problem="high"><span>Риск срока</span><strong>До отгрузки 1 день, формы не готовы</strong><small>Причина: задача технолога просрочена, вопрос по формам без ответа.</small></article>
+              <article class="risk-medium" data-problem="medium"><span>Риск документа</span><strong>Бланк согласования не подписан</strong><small>Причина: клиент получил бланк, но менеджер не поставил напоминание.</small></article>
+              <article class="risk-medium" data-problem="medium"><span>CRM-риск</span><strong>КП без ответа больше 5 дней</strong><small>Причина: нет следующего действия и даты повторного касания.</small></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card stalled-card">
+            <div class="card-head"><h3>Зависшие процессы</h3><span class="pill danger">без движения</span></div>
+            <div class="stalled-list">
+              <div data-problem="high"><strong>ЗАК-0187 · 2 дня без движения</strong><span>Последнее действие: дизайнер запросил исходник макета. Следующее действие не назначено.</span></div>
+              <div data-problem="medium"><strong>ВОП-0031 · ждём ответ менеджера</strong><span>Вопрос по направлению намотки. Срок ответа истёк вчера.</span></div>
+              <div data-problem="medium"><strong>СПЦ-0024 · документ без проверки</strong><span>Требует проверки руководителем перед отправкой клиенту.</span></div>
+              <div data-problem="low"><strong>Клиент Grass · 6 дней без касания</strong><span>Переговоры активные, но дата следующего действия не указана.</span></div>
+            </div>
+          </div>
+
+          <div class="card bottleneck-card">
+            <div class="card-head"><h3>Карта узких мест</h3><span class="pill">где тормозит процесс</span></div>
+            <div class="bottleneck-list">
+              <div><span>Ожидаем подпись бланка</span><strong>6 заказов</strong><i style="width:78%"></i></div>
+              <div><span>Ожидаем ответ клиента</span><strong>8 клиентов</strong><i style="width:90%"></i></div>
+              <div><span>Ожидаем материал</span><strong>4 заказа</strong><i style="width:55%"></i></div>
+              <div><span>Ожидаем формы</span><strong>3 заказа</strong><i style="width:44%"></i></div>
+              <div><span>Ожидаем оплату</span><strong>5 счетов</strong><i style="width:64%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card money-near-card">
+            <div class="card-head"><h3>Деньги рядом</h3><span class="pill success">финансовый фокус</span></div>
+            <div class="money-grid-v13">
+              <div><span>Ожидается сегодня</span><strong>70 000 ₽</strong><small>СЧ-1319 · ООО «ЭНДЖОЙ ФУД»</small></div>
+              <div><span>Ожидается на неделе</span><strong>420 000 ₽</strong><small>5 счетов и 2 частичных платежа</small></div>
+              <div><span>Частично оплачено</span><strong>180 000 ₽</strong><small>остаток 120 000 ₽</small></div>
+              <div><span>Просрочено</span><strong>95 000 ₽</strong><small>нужно действие менеджера</small></div>
+            </div>
+          </div>
+
+          <div class="card employee-load-card">
+            <div class="card-head"><h3>Нагрузка сотрудников</h3><span class="pill">без давления</span></div>
+            <div class="employee-load-list">
+              <article><strong>Менеджер · Константин</strong><span>42 клиента · 8 задач сегодня · 2 просрочено · 5 КП без ответа</span><i style="width:76%"></i></article>
+              <article><strong>Дизайнер</strong><span>6 бланков в работе · 2 срочных · 1 вопрос без ответа</span><i style="width:64%"></i></article>
+              <article><strong>Технолог</strong><span>4 заказа ждут проверки форм · 3 по штампу · 2 вопроса от печатника</span><i style="width:70%"></i></article>
+              <article><strong>Печатник</strong><span>5 заказов готовы к печати · 1 проблема по материалу</span><i style="width:52%"></i></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card changes24-card">
+            <div class="card-head"><h3>Что изменилось за сутки</h3><span class="pill success">сводка</span></div>
+            <div class="changes24-grid">
+              <div><strong>5</strong><span>создано заказов</span></div>
+              <div><strong>3</strong><span>отгружено</span></div>
+              <div><strong>4</strong><span>выставлено счёта</span></div>
+              <div><strong>2</strong><span>новые просрочки</span></div>
+              <div><strong>3</strong><span>подписано бланка</span></div>
+              <div><strong>12</strong><span>закрыто задач</span></div>
+            </div>
+          </div>
+
+          <div class="card leader-fast-actions">
+            <div class="card-head"><h3>Быстрые решения руководителя</h3><span class="pill">действия</span></div>
+            <div class="quick-action-grid">
+              <button class="small-btn">Согласовать отсрочку</button>
+              <button class="small-btn">Отклонить отсрочку</button>
+              <button class="small-btn">Назначить ответственного</button>
+              <button class="small-btn">Создать задачу</button>
+              <button class="small-btn">Разрешить отгрузку</button>
+              <button class="small-btn">Запросить комментарий</button>
+              <button class="small-btn">Проверить документ</button>
+              <button class="small-btn">Написать новость</button>
+            </div>
+            <p class="muted-note-v13">В прототипе кнопки показывают логику будущих решений. В серверной версии они будут создавать реальные задачи, события, статусы и записи в истории действий.</p>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="workspace" class="section">
+        <div class="hero-card soft-hero">
+          <div>
+            <span class="eyebrow">Личный рабочий стол</span>
+            <h2>Каждый сотрудник видит свой день, задачи, клиентов и уведомления</h2>
+            <p>Рабочий стол собирает в одном месте всё, что требует внимания: напоминания по клиентам, задачи от руководителя, вопросы по заказам, события календаря и новости компании.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-go="calendar">Календарь</button>
+            <button class="secondary" data-go="tasks">Мои задачи</button>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <div class="card day-focus-card">
+            <div class="card-head"><h3>Сегодня</h3><span class="pill success">Менеджер</span></div>
+            <div class="today-stack">
+              <article class="focus-item hot"><strong>10:30 · Позвонить ООО «Фрутти»</strong><span>Повторное касание после отправки КП. Связано с карточкой клиента.</span><button class="small-btn" data-go="clients">Открыть клиента</button></article>
+              <article class="focus-item"><strong>12:00 · Проверить ответ Grass</strong><span>Переговоры по условиям, возможная реферальная система и образцы.</span><button class="small-btn" data-go="clients">История клиента</button></article>
+              <article class="focus-item"><strong>15:00 · Подготовить спецификацию</strong><span>Связано с заказом AL-2026-0711-01 и договором клиента.</span><button class="small-btn" data-go="orders">Открыть заказ</button></article>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Вопросы ко мне</h3><span class="pill" id="workspaceQuestionBadge">3</span></div>
+            <div class="mini-table">
+              <div><strong>Намотка в бланке не совпадает</strong><span>Адресаты: менеджер, дизайнер, технолог · срочно</span></div>
+              <div><strong>Нужно подтвердить Pantone</strong><span>Дизайнер ждёт ответ по макету</span></div>
+              <div><strong>Нужен новый нож?</strong><span>Бухгалтер / дизайнер должны подтвердить заказ оснастки</span></div>
+            </div>
+            <button class="small-btn" data-go="questions">Открыть все вопросы</button>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Новости компании</h3><span class="status warning">2 непрочитано</span></div>
+            <div class="news-mini-list">
+              <article><strong>Новый порядок запуска заказов</strong><span>Перед печатью должен быть подписанный бланк и спецификация.</span></article>
+              <article><strong>Обновление калькулятора</strong><span>В расчётах используются актуальные данные бухгалтерии от 30.06.</span></article>
+            </div>
+            <button class="small-btn" data-go="news">Открыть новости</button>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Календарь недели</h3><span class="pill">7 событий</span></div>
+            <div class="calendar-mini">
+              <div><b>Пн</b><span>3 касания</span></div>
+              <div><b>Вт</b><span>1 договор</span></div>
+              <div><b>Ср</b><span>2 КП</span></div>
+              <div><b>Чт</b><span>1 встреча</span></div>
+              <div><b>Пт</b><span>отгрузка</span></div>
+            </div>
+            <button class="small-btn" data-go="calendar">Открыть календарь</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="employees" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Сотрудники и доступ</h3><button class="small-btn" id="demoCreateEmployeeBtn">+ Создать кабинет</button></div>
+            <p>В рабочей версии руководитель или администратор создаёт сотрудника, задаёт логин, временный пароль, назначает роль и включает доступ к нужным разделам.</p>
+            <div class="employee-list">
+              <article class="employee-card active"><div><strong>Овечкин Константин</strong><span>Менеджер · продажи · активен</span></div><b>CRM / расчёты / заказы</b></article>
+              <article class="employee-card"><div><strong>Дизайнер</strong><span>Дизайн · бланки · формы</span></div><b>макеты / согласования</b></article>
+              <article class="employee-card"><div><strong>Технолог</strong><span>Препресс · формы · ножи</span></div><b>технический пакет</b></article>
+              <article class="employee-card"><div><strong>Печатник</strong><span>Производство · очередь печати</span></div><b>заказы / бланки</b></article>
+              <article class="employee-card"><div><strong>Бухгалтер</strong><span>Договоры · спецификации · цены</span></div><b>финансы / настройки</b></article>
+              <article class="employee-card"><div><strong>Руководитель</strong><span>Полный доступ · контроль</span></div><b>всё</b></article>
+            </div>
+          </div>
+
+          <div class="card access-card">
+            <div class="card-head"><h3>Создание кабинета</h3><span class="pill success">v0.9</span></div>
+            <div class="employee-form-grid">
+              <label>ФИО<input value="Иванов Иван" /></label>
+              <label>Должность<input value="Менеджер по продажам" /></label>
+              <label>Логин<input value="ivanov" /></label>
+              <label>Временный пароль<input value="выдаёт руководитель" /></label>
+              <label>Роль<select><option>Менеджер</option><option>Дизайнер</option><option>Технолог</option><option>Печатник</option><option>Бухгалтер</option><option>Руководитель</option></select></label>
+              <label>Статус<select><option>Доступ включён</option><option>Доступ отключён</option><option>Ожидает активации</option></select></label>
+            </div>
+            <div class="role-rights-matrix">
+              <div class="matrix-head">Права роли</div>
+              <div><span>Клиенты</span><b>просмотр / создание / комментарии</b></div>
+              <div><span>Расчёты</span><b>создание / КП / история</b></div>
+              <div><span>Заказы</span><b>свои заказы / статусы / вопросы</b></div>
+              <div><span>Себестоимость</span><b>скрыта для менеджера</b></div>
+              <div><span>Настройки</span><b>только бухгалтер / руководитель</b></div>
+            </div>
+            <div class="notice-box">Сейчас это прототип логики. Настоящие пароли нельзя хранить в HTML — защищённый вход появится на серверном этапе.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calendar" class="section">
+        <div class="card">
+          <div class="card-head wrap">
+            <div><span class="eyebrow">Календарь работы</span><h2>Личный календарь менеджера и общий календарь компании</h2></div>
+            <button class="small-btn">+ Событие</button>
+          </div>
+          <div class="calendar-toolbar">
+            <button class="active">Мой календарь</button><button>Команда</button><button>Компания</button><button>Заказы</button><button>Просрочено</button>
+          </div>
+          <div class="calendar-board">
+            <div class="calendar-day"><h4>Понедельник</h4><article class="cal-event client"><strong>10:30 · Позвонить клиенту</strong><span>ООО «Фрутти» · повторное касание</span></article><article class="cal-event"><strong>14:00 · Проверить КП</strong><span>Торговый Дом Шоколада</span></article></div>
+            <div class="calendar-day"><h4>Вторник</h4><article class="cal-event contract"><strong>11:00 · Договор</strong><span>Отправить клиенту договор на согласование</span></article></div>
+            <div class="calendar-day"><h4>Среда</h4><article class="cal-event order"><strong>12:00 · Спецификация</strong><span>AL-2026-0711-01 · согласовать с заказчиком</span></article><article class="cal-event client"><strong>16:30 · Повторный звонок</strong><span>ProffSyrup · отдел закупок</span></article></div>
+            <div class="calendar-day"><h4>Четверг</h4><article class="cal-event task"><strong>09:30 · Задача руководителя</strong><span>Подготовить список горячих клиентов</span></article></div>
+            <div class="calendar-day"><h4>Пятница</h4><article class="cal-event delivery"><strong>15:00 · Отгрузка</strong><span>Заказ готов к доставке по спецификации</span></article></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tasks" class="section">
+        <div class="hero-card soft-hero">
+          <div>
+            <span class="eyebrow">v1.0 · номерованные задачи</span>
+            <h2>Задачи становятся контролируемыми: номер, ответственный, срок, связанный заказ и история</h2>
+            <p>Каждая задача получает сквозной номер вида ЗАД-0154. Руководителю, менеджеру и производству теперь проще ссылаться на задачу, искать её в заказе, календаре, уведомлениях и истории клиента.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-go="orders">Задачи заказа</button>
+            <button class="secondary" data-go="finance">Финансовые задачи</button>
+          </div>
+        </div>
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Доска задач</h3><span class="pill">сквозная нумерация</span></div>
+            <div class="task-board-v7 numbered-task-board">
+              <div class="task-column"><h4>Новые</h4><article class="task-card"><small>ЗАД-0151</small><strong>Проверить макет</strong><span>Дизайнер · AL-2026-0711-01 · сегодня 14:00</span></article><article class="task-card"><small>ЗАД-0152</small><strong>Выставить счёт</strong><span>Руководитель · СЧ-1319 · до запуска</span></article></div>
+              <div class="task-column"><h4>В работе</h4><article class="task-card hot"><small>ЗАД-0153</small><strong>Уточнить намотку</strong><span>Менеджер · ВОП-0048 · срочно</span></article></div>
+              <div class="task-column"><h4>Ждёт ответа</h4><article class="task-card"><small>ЗАД-0154</small><strong>Согласовать отсрочку</strong><span>Руководитель · ОТС-0007 · 30 дней</span></article></div>
+              <div class="task-column"><h4>Выполнено</h4><article class="task-card done"><small>ЗАД-0149</small><strong>Импорт базы клиентов</strong><span>Создано 3 карточки</span></article></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Назначить задачу</h3><span class="status ok">руководитель</span></div>
+            <div class="task-form-v7">
+              <label>Номер задачи<input value="ЗАД-0155" readonly /></label>
+              <label>Кому<select><option>Овечкин Константин — менеджер</option><option>Дизайнер</option><option>Технолог</option><option>Печатник</option><option>Бухгалтер</option><option>Руководитель</option></select></label>
+              <label>Тема<input value="Проверить следующий шаг по заказу" /></label>
+              <label>Связь<select><option>Заказ AL-2026-0711-01</option><option>Клиент ООО «ЭНДЖОЙ ФУД»</option><option>Счёт СЧ-1319</option><option>Вопрос ВОП-0048</option><option>Без связи</option></select></label>
+              <label>Срок<input value="15.07.2026 12:00" /></label>
+              <label>Приоритет<select><option>Высокий</option><option>Средний</option><option>Низкий</option></select></label>
+              <label class="full">Описание<textarea>Открыть карточку заказа, проверить причину остановки, указать следующее действие и ответственного.</textarea></label>
+            </div>
+            <button class="primary wide" id="demoAssignTaskBtn">Назначить задачу</button>
+            <p class="muted small-text">В рабочей версии задача появится у сотрудника, в календаре, уведомлениях, карточке клиента и карточке заказа.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="news" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Новости компании</h3><button class="small-btn">+ Новость</button></div>
+            <div class="company-feed">
+              <article class="news-card important"><span>Руководитель · сегодня</span><strong>Новый порядок принятия заказа в работу</strong><p>Заказ передаётся в работу только после договора, согласованной спецификации, подписанного бланка и полного пакета файлов.</p><button class="small-btn news-ack" data-news="0">Ознакомлен</button></article>
+              <article class="news-card"><span>Бухгалтерия · вчера</span><strong>Актуальные условия по спецификациям</strong><p>В спецификации обязательно фиксируем количество, цену с НДС и доставкой, срок поставки и адрес доставки.</p><button class="small-btn news-ack" data-news="1">Ознакомлен</button></article>
+              <article class="news-card"><span>Система · 30.06</span><strong>Обновлены базовые данные калькулятора</strong><p>В расчётах используется актуальная таблица бухгалтера и новая точность отображения для менеджеров.</p><button class="small-btn news-ack" data-news="2">Ознакомлен</button></article>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Панель руководителя</h3><span class="pill">прочтение</span></div>
+            <div class="read-stats">
+              <article><strong id="readNewsCount">0 из 3</strong><span>новостей отмечено как прочитанные</span></article>
+              <article><strong>8 из 10</strong><span>сотрудников ознакомились с главным объявлением</span></article>
+              <article><strong>2</strong><span>сотрудника пока не открывали новости</span></article>
+            </div>
+            <div class="notice-box">Новости нужны, чтобы важные правила и изменения не терялись в чатах и устных договорённостях.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="notifications" class="section">
+        <div class="card">
+          <div class="card-head"><h3>Центр уведомлений</h3><span class="status warning">5 новых</span></div>
+          <div class="notification-list-v7">
+            <article class="notification-card urgent"><strong>ВОП-0048 · Срочный вопрос</strong><span>Заказ AL-2026-0711-01 · не совпадает намотка в бланке и комментарии.</span><button class="small-btn" data-go="questions">Открыть вопрос</button></article>
+            <article class="notification-card"><strong>ЗАД-0154 · Задача от руководителя</strong><span>Подготовить список клиентов без следующего действия до конца дня.</span><button class="small-btn" data-go="tasks">Открыть задачу</button></article>
+            <article class="notification-card"><strong>Календарное напоминание</strong><span>Через 30 минут позвонить ООО «Фрутти».</span><button class="small-btn" data-go="calendar">Открыть календарь</button></article>
+            <article class="notification-card"><strong>Новая новость компании</strong><span>Опубликован новый порядок принятия заказа в работу.</span><button class="small-btn" data-go="news">Открыть новости</button></article>
+            <article class="notification-card"><strong>ОТС-0007 · Отсрочка ожидает согласования</strong><span>Менеджер указал 30 дней отсрочки по заказу AL-2026-0711-01. Нужна отметка руководителя.</span><button class="small-btn" data-go="finance">Открыть финансы</button></article>
+            <article class="notification-card"><strong>Бланк согласования подписан</strong><span>Можно запускать заказ после финальной проверки допусков.</span><button class="small-btn" data-go="orders">Открыть заказ</button></article>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id="crm" class="section">
+        <div class="hero-card soft-hero crm-hero">
+          <div>
+            <span class="eyebrow">CRM менеджера</span>
+            <h2>Коммерческий рабочий центр: кто ждёт ответа, кому звонить, где зависло КП</h2>
+            <p>CRM внутри ART-LINE OS должна каждый день подсказывать менеджеру следующие действия: кому позвонить, кому отправить письмо, где просрочено касание, какой клиент горячий, где нет следующего шага и какие сделки движутся к договору или заказу.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-go="calendar">Календарь касаний</button>
+            <button class="secondary" data-go="clients">Карточки клиентов</button>
+          </div>
+        </div>
+
+        <div class="crm-command-grid">
+          <article class="crm-kpi urgent"><span>Просрочено</span><strong>5</strong><small>клиентов требуют касания</small></article>
+          <article class="crm-kpi hot"><span>Горячие</span><strong>8</strong><small>есть потребность / запрос</small></article>
+          <article class="crm-kpi"><span>Без следующего шага</span><strong>6</strong><small>нужно назначить действие</small></article>
+          <article class="crm-kpi"><span>Ждём ответ</span><strong>11</strong><small>после писем и КП</small></article>
+          <article class="crm-kpi"><span>На просчёте</span><strong>4</strong><small>нужен расчёт стоимости</small></article>
+          <article class="crm-kpi"><span>Договор</span><strong>3</strong><small>согласование условий</small></article>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card crm-daily-card">
+            <div class="card-head wrap">
+              <div><h3>Рабочий день менеджера</h3><p>Система собирает действия из клиентов, задач, календаря и воронки.</p></div>
+              <span class="pill success">Сегодня</span>
+            </div>
+            <div class="crm-action-stack">
+              <article class="crm-action overdue"><b>09:30 · Просрочено</b><strong>Повторно связаться с ООО «Фрутти»</strong><span>КП отправлено, ответа нет 2 дня. Следующий шаг: короткое письмо + звонок.</span><button class="small-btn" data-go="clients">Карточка</button></article>
+              <article class="crm-action hot"><b>11:00 · Горячий клиент</b><strong>Grass · обсудить реферальную систему</strong><span>Есть интерес к условиям, образцам и стабильности поставки.</span><button class="small-btn" data-go="clients">История</button></article>
+              <article class="crm-action"><b>14:00 · Проверка ответа</b><strong>ТМК Мясо · письмо Светлане</strong><span>Проверить реакцию на письмо, при тишине подготовить второе касание.</span><button class="small-btn" data-go="calendar">В календарь</button></article>
+              <article class="crm-action"><b>16:30 · Активный заказ</b><strong>ЭНДЖОЙ ФУД · подтвердить запуск</strong><span>Договор и бланк готовы, нужно принять заказ в работу.</span><button class="small-btn" data-go="orders">Заказ</button></article>
+            </div>
+          </div>
+
+          <div class="card crm-form-card">
+            <div class="card-head"><h3>Быстрое следующее действие</h3><span class="pill">CRM</span></div>
+            <div class="crm-next-form">
+              <label>Клиент<select><option>ООО «Фрутти»</option><option>Grass</option><option>ООО «ТМК Мясо»</option><option>ООО «ЭНДЖОЙ ФУД»</option></select></label>
+              <label>Действие<select><option>Позвонить</option><option>Написать письмо</option><option>Проверить ответ</option><option>Отправить КП</option><option>Уточнить ТЗ</option><option>Вернуться через месяц</option></select></label>
+              <label>Дата<input type="date" value="2026-07-13" /></label>
+              <label>Время<input type="time" value="10:30" /></label>
+              <label class="full">Комментарий<textarea>Коротко напомнить о расчёте и предложить прислать 2–3 позиции для сравнения стоимости.</textarea></label>
+            </div>
+            <button class="primary wide" id="demoCrmReminderBtn">Создать напоминание</button>
+            <div class="notice-box"><strong>В рабочей версии:</strong> действие появится в календаре менеджера, карточке клиента, уведомлениях и ежедневном списке “Сегодня”.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head wrap">
+            <div><h3>Воронка продаж менеджера</h3><p>Коммерческие статусы отделены от производственных статусов заказа.</p></div>
+            <span class="pill">drag-and-drop позже</span>
+          </div>
+          <div class="crm-funnel-board">
+            <div class="crm-lane"><h4>Новый лид</h4><div class="crm-deal"><b>ООО «Сиропы МО»</b><span>Найден сайт, нужен контакт закупок</span></div></div>
+            <div class="crm-lane"><h4>Первичный контакт</h4><div class="crm-deal"><b>Новбытхим</b><span>письмо отправлено, ждём реакцию</span></div></div>
+            <div class="crm-lane"><h4>Выявлена потребность</h4><div class="crm-deal hot"><b>Grass</b><span>интерес к качеству, срокам и KPI снабжения</span></div></div>
+            <div class="crm-lane"><h4>На просчёте</h4><div class="crm-deal"><b>ТМК Мясо</b><span>нужно получить ТЗ / макеты</span></div></div>
+            <div class="crm-lane"><h4>КП отправлено</h4><div class="crm-deal overdue"><b>ООО «Фрутти»</b><span>нет ответа · просрочено</span></div></div>
+            <div class="crm-lane"><h4>Договор</h4><div class="crm-deal"><b>ЭНДЖОЙ ФУД</b><span>договор подписан</span></div></div>
+            <div class="crm-lane"><h4>Клиент</h4><div class="crm-deal done"><b>Активные заказы</b><span>переход к реальным запросам</span></div></div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Клиенты без следующего шага</h3><span class="status danger">обязательный контроль</span></div>
+            <div class="crm-risk-list">
+              <article><strong>ООО «Фрутти»</strong><span>КП отправлено, но не назначено повторное касание после 13.07.</span><button class="small-btn">Назначить</button></article>
+              <article><strong>ProffSyrup</strong><span>Письмо отправлено в закупки, нет даты следующего звонка.</span><button class="small-btn">Назначить</button></article>
+              <article><strong>ООО «ТД Шоколада»</strong><span>Есть контакт Камилы, нужно поставить проверку ответа.</span><button class="small-btn">Назначить</button></article>
+              <article><strong>Микояновский мясокомбинат</strong><span>Нужна проверка регистрации поставщика и повторное письмо.</span><button class="small-btn">Назначить</button></article>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>ИИ-помощник менеджера</h3><span class="pill success">проектируется</span></div>
+            <div class="ai-crm-prompts">
+              <button>Сделай резюме по клиенту</button>
+              <button>Кому сегодня нужно позвонить?</button>
+              <button>Покажи горячих клиентов без ответа</button>
+              <button>Подготовь второе письмо после тишины</button>
+              <button>Какие клиенты без следующего шага?</button>
+              <button>Оцени потенциал клиента по истории</button>
+            </div>
+            <div class="ai-answer-box">
+              <strong>Пример подсказки:</strong>
+              <p>“По ООО «Фрутти» КП отправлено, но ответа нет. Рекомендую короткое второе касание: напомнить о расчёте, предложить сравнить 2–3 позиции и уточнить, кто принимает решение по этикеткам.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Шаблоны быстрых действий</h3><span class="pill">для отдела продаж</span></div>
+            <div class="template-list">
+              <article><b>После первого звонка</b><span>Короткое письмо с предложением расчёта по ТЗ/макетам.</span></article>
+              <article><b>После отправки КП</b><span>Проверка получения и предложение обсудить 2–3 позиции.</span></article>
+              <article><b>После тишины</b><span>Мягкое повторное касание без давления.</span></article>
+              <article><b>После согласия на расчёт</b><span>Запрос макетов, параметров, тиражей, намотки и сроков.</span></article>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>CRM-аналитика руководителя</h3><span class="pill">будущий отчёт</span></div>
+            <div class="manager-analytics">
+              <div><span>Менеджер</span><b>Клиентов</b><b>Просрочено</b><b>КП</b><b>Договор</b></div>
+              <div><span>Константин</span><b>42</b><b>5</b><b>11</b><b>3</b></div>
+              <div><span>Менеджер 2</span><b>36</b><b>2</b><b>8</b><b>1</b></div>
+              <div><span>Менеджер 3</span><b>29</b><b>7</b><b>5</b><b>0</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="clients" class="section">
+        <div class="content-grid clients-layout">
+          <div class="card client-list-card">
+            <div class="card-head">
+              <h3>Клиенты</h3>
+              <button class="small-btn">+ Клиент</button>
+            </div>
+            <input class="search-input" placeholder="Поиск по названию, ИНН, email..." />
+            <div class="client-list">
+              <button class="client-item active">
+                <strong>ООО «ЭНДЖОЙ ФУД»</strong>
+                <span>Договор подписан · новый запрос</span>
+              </button>
+              <button class="client-item">
+                <strong>ООО «ТМК Мясо»</strong>
+                <span>КП отправлено · ждём ответ</span>
+              </button>
+              <button class="client-item">
+                <strong>Grass</strong>
+                <span>Переговоры · условия</span>
+              </button>
+              <div id="importedClientList" class="imported-client-list"></div>
+            </div>
+          </div>
+
+          <div class="card client-card">
+            <div class="card-head wrap">
+              <div>
+                <span class="eyebrow">Карточка клиента</span>
+                <h2>ООО «ЭНДЖОЙ ФУД»</h2>
+              </div>
+              <span class="status ok">Активный клиент</span>
+            </div>
+
+            <div class="info-grid">
+              <div><span>ИНН</span><strong>7810641453</strong></div>
+              <div><span>Контакт</span><strong>Майданик А.В.</strong></div>
+              <div><span>Email</span><strong>почта закупок / ЭДО</strong></div>
+              <div><span>Ответственный</span><strong>Овечкин Константин</strong></div>
+            </div>
+
+            <div class="client-control-board">
+              <article>
+                <span>Стадия клиента</span>
+                <strong>Активный клиент</strong>
+                <small>договор подписан, ждём/ведём реальные заказы</small>
+              </article>
+              <article>
+                <span>Договор</span>
+                <strong>№ 20260608</strong>
+                <small>подписан · действует до 31.12.2026</small>
+              </article>
+              <article>
+                <span>Последний заказ</span>
+                <strong>AL-2026-0711-01</strong>
+                <small>бланк подписан · можно принимать в работу</small>
+              </article>
+              <article>
+                <span>Открытые вопросы</span>
+                <strong id="clientOpenQuestionsBadge">3</strong>
+                <small>связаны с заказом и клиентом</small>
+              </article>
+            </div>
+
+            <div class="subcard contract-summary">
+              <div>
+                <h3>Договор</h3>
+                <p>Рамочный договор фиксирует условия работы с клиентом. Реальные партии затем запускаются через запросы, спецификации и подписанные бланки.</p>
+              </div>
+              <div class="contract-meta">
+                <span class="status ok">Подписан</span>
+                <a href="assets/ДОГОВОР_пример.doc" download>Скачать пример договора</a>
+              </div>
+            </div>
+
+            <div class="client-hub-panel">
+              <div>
+                <span class="eyebrow">Центр клиента</span>
+                <strong>Все связанные материалы и действия собраны в одной карточке</strong>
+              </div>
+              <div class="hub-actions">
+                <button class="small-btn" data-open-client-tab="client-files">Файлы</button>
+                <button class="small-btn" data-go="calculations">Расчёты</button>
+                <button class="small-btn" data-go="orders">Заказы</button>
+                <button class="small-btn" data-go="approvals">Бланки</button>
+                <button class="small-btn" data-go="questions">Вопросы</button>
+              </div>
+            </div>
+
+            <div class="tabs client-tabs">
+              <button class="tab active" data-tab="client-overview">Обзор</button>
+              <button class="tab" data-tab="client-crm">CRM</button>
+              <button class="tab" data-tab="history">История взаимодействия</button>
+              <button class="tab" data-tab="client-contracts">Договоры</button>
+              <button class="tab" data-tab="client-calculations">Расчёты</button>
+              <button class="tab" data-tab="client-orders">Заказы</button>
+              <button class="tab" data-tab="client-approvals">Бланки</button>
+              <button class="tab" data-tab="client-questions">Вопросы</button>
+              <button class="tab" data-tab="client-files">Файлы</button>
+              <button class="tab" data-tab="client-map">Связи</button>
+              <button class="tab" data-tab="client-imported">Импортированные</button>
+            </div>
+
+            <div class="tab-panel active" id="client-overview">
+              <div class="client-overview-grid">
+                <div class="overview-card">
+                  <span>Следующий шаг</span>
+                  <strong>Подтвердить запуск заказа в работу</strong>
+                  <p>Все ключевые согласования пройдены: договор, расчёт, спецификация, макеты и бланк.</p>
+                </div>
+                <div class="overview-card">
+                  <span>Последняя активность</span>
+                  <strong>Бланк согласования подготовлен</strong>
+                  <p>Дизайнер сформировал бланк, менеджер отправляет клиенту/прикрепляет подписанную версию.</p>
+                </div>
+                <div class="overview-card">
+                  <span>Файловое хранилище</span>
+                  <strong id="clientFileOverviewCount">6 файлов</strong>
+                  <p>Договоры, спецификации, макеты, ТЗ и бланки хранятся в одной карточке клиента.</p>
+                </div>
+                <div class="overview-card">
+                  <span>Организационная связь</span>
+                  <strong>Клиент → заказ → бланк → вопрос</strong>
+                  <p>Из любого связанного объекта можно вернуться в карточку клиента и увидеть полную картину.</p>
+                </div>
+              </div>
+              <div class="hub-cards">
+                <button data-open-client-tab="client-files"><b>Файлы клиента</b><span>единое хранилище документов и макетов</span></button>
+                <button data-open-client-tab="client-map"><b>Карта связей</b><span>договор, запросы, расчёты, заказы, вопросы</span></button>
+                <button data-open-client-tab="client-questions"><b>История вопросов</b><span>все вопросы по клиенту и его заказам</span></button>
+                <button data-open-client-tab="history"><b>История взаимодействия</b><span>последовательная цепочка действий</span></button>
+              </div>
+            </div>
+
+
+            <div class="tab-panel" id="client-crm">
+              <div class="client-crm-grid">
+                <div class="overview-card hot-card">
+                  <span>CRM-стадия</span>
+                  <strong>Активный клиент · новый запрос</strong>
+                  <p>Клиент уже имеет договор, поэтому менеджер ведёт не первичную продажу, а повторные реальные заказы и сопровождение.</p>
+                </div>
+                <div class="overview-card">
+                  <span>Следующее действие</span>
+                  <strong>Сегодня · 16:30</strong>
+                  <p>Проверить подписанный бланк и подтвердить запуск заказа в работу.</p>
+                </div>
+                <div class="overview-card">
+                  <span>Температура клиента</span>
+                  <strong>Горячий</strong>
+                  <p>Есть конкретный запрос, макеты и готовность согласовать печать.</p>
+                </div>
+                <div class="overview-card">
+                  <span>Потенциал</span>
+                  <strong>Высокий</strong>
+                  <p>Повторные SKU, регулярные тиражи, потенциально несколько направлений этикеток.</p>
+                </div>
+              </div>
+              <div class="crm-touch-list">
+                <article><b>11.07 · звонок</b><span>Подтвердить параметры заказа, уточнить срок подписания бланка.</span></article>
+                <article><b>12.07 · письмо</b><span>Отправить спецификацию и короткое резюме по условиям запуска.</span></article>
+                <article><b>15.07 · контроль</b><span>Если нет ответа — повторное касание и предложение созвона на 5 минут.</span></article>
+              </div>
+            </div>
+
+            <div class="tab-panel" id="history">
+              <div class="timeline-controls">
+                <input id="historyInput" placeholder="Добавить комментарий в историю клиента..." />
+                <button id="addHistoryBtn" class="primary">Добавить</button>
+              </div>
+              <div class="timeline" id="clientTimeline"></div>
+            </div>
+
+            <div class="tab-panel" id="client-contracts">
+              <div class="mini-table">
+                <div><strong>№ 20260608</strong><span>Подписан · действует до 31.12.2026 · есть пролонгация</span></div>
+                <div><strong>Условия оплаты</strong><span>По договору/спецификации и УПД</span></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="client-calculations">
+              <div class="mini-table linked-list">
+                <div><strong>CALC-2026-0711-01</strong><span>Попкорн 100×100 · флексо · 50 000 / 100 000 / 250 000 шт</span><button class="small-btn" data-go="calculations">Открыть расчёт</button></div>
+                <div><strong>CALC-2026-0711-02</strong><span>Повторный вариант · пересчёт под другой материал</span><button class="small-btn" data-go="calculator">Открыть калькулятор</button></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="client-orders">
+              <div class="mini-table linked-list">
+                <div><strong>AL-2026-0711-01</strong><span>Попкорн 100×100 · бланк подписан · готовится к печати</span><button class="small-btn" data-go="orders">Открыть заказ</button></div>
+                <div><strong>AL-2026-0710-03</strong><span>Этикетка косметика · ждём нож</span><button class="small-btn" data-go="orders">Открыть заказ</button></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="client-approvals">
+              <div class="mini-table linked-list">
+                <div><strong>Бланк согласования · Попкорн 100×100</strong><span>Лицевая и оборотная сторона · подписан клиентом</span><button class="small-btn" data-go="approvals">Открыть бланк</button></div>
+                <div><strong>Подписанный бланк</strong><span>Хранится в файлах клиента и в карточке заказа</span><button class="small-btn" data-go="orders">Открыть заказ</button></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="client-questions">
+              <div class="mini-table linked-list" id="clientQuestionHistory"></div>
+            </div>
+            <div class="tab-panel" id="client-files">
+              <div class="file-toolbar">
+                <div>
+                  <strong>Файловое пространство клиента</strong>
+                  <span>Договоры, спецификации, макеты, бланки, письма, ТЗ и любые рабочие файлы клиента.</span>
+                </div>
+                <label class="upload-mini">+ Добавить файлы
+                  <input id="clientFileUpload" type="file" multiple />
+                </label>
+              </div>
+              <div class="file-context-panel">
+                <span>Файл можно связать с:</span>
+                <b>клиентом</b><b>договором</b><b>расчётом</b><b>заказом</b><b>бланком</b><b>вопросом</b>
+              </div>
+              <div class="file-filters">
+                <button class="file-filter active" data-file-filter="all">Все</button>
+                <button class="file-filter" data-file-filter="Договор">Договоры</button>
+                <button class="file-filter" data-file-filter="Спецификация">Спецификации</button>
+                <button class="file-filter" data-file-filter="Бланк">Бланки</button>
+                <button class="file-filter" data-file-filter="Макет">Макеты</button>
+                <button class="file-filter" data-file-filter="ТЗ">ТЗ</button>
+              </div>
+              <div class="file-grid file-vault" id="clientFileVault"></div>
+              <p class="muted">В прототипе сохраняются названия и категории файлов. В рабочей версии файлы будут храниться на сервере или в корпоративном облаке и привязываться к клиенту, заказу, расчёту или бланку.</p>
+            </div>
+            <div class="tab-panel" id="client-map">
+              <div class="relation-map relation-map-v5">
+                <div class="map-node main">ООО «ЭНДЖОЙ ФУД»<span>центральная карточка клиента</span></div>
+                <button data-go="contracts">Договор №20260608<span>рамочные условия</span></button>
+                <button data-go="requests">Запрос на заказ<span>пакеты, ТЗ, макеты</span></button>
+                <button data-go="calculations">Расчёты<span>варианты цены и КП</span></button>
+                <button data-go="specifications">Спецификация<span>стоимость, сроки, доставка</span></button>
+                <button data-go="approvals">Бланк согласования<span>техническое согласование</span></button>
+                <button data-go="orders">Заказ AL-2026-0711-01<span>производственный центр</span></button>
+                <button data-go="questions">Вопросы<span>подзадачи и проблемы</span></button>
+                <button data-open-client-tab="client-files">Файлы<span>единое хранилище клиента</span></button>
+              </div>
+            </div>
+            <div class="tab-panel" id="client-imported">
+              <div class="mini-table" id="clientImportedPanel">
+                <div><strong>Импорт пока не выполнен</strong><span>Загрузите таблицу в разделе «Импорт базы», подтвердите предпросмотр, и карточки появятся здесь.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="import" class="section">
+        <div class="hero-card import-hero">
+          <div>
+            <span class="eyebrow">ART-LINE OS v0.6</span>
+            <h2>Импорт базы клиентов менеджера</h2>
+            <p>Менеджер загружает Excel/CSV или вставляет данные из Google Sheets. ИИ распознаёт колонки, распределяет данные по карточкам клиентов, создаёт историю взаимодействия и показывает предпросмотр перед сохранением.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="button-link" href="assets/Шаблон_импорта_клиентов_ART-LINE_OS.xlsx" download>Скачать XLSX-шаблон</a>
+            <a class="button-link" href="assets/Шаблон_импорта_клиентов_ART-LINE_OS.csv" download>Скачать CSV-шаблон</a>
+          </div>
+        </div>
+
+        <div class="content-grid two import-grid">
+          <div class="card">
+            <div class="card-head wrap"><h3>1. Загрузка таблицы</h3><span class="pill">Excel / CSV / Google Sheets</span></div>
+            <div class="source-grid">
+              <label class="upload-box">
+                <strong>Загрузить файл</strong>
+                <span>CSV уже разбирается в прототипе. XLSX заложен как формат для рабочей серверной версии.</span>
+                <input id="importFile" type="file" accept=".csv,.txt,.xlsx,.xls" />
+              </label>
+              <button class="source-card" id="loadSampleBtn" type="button">
+                <strong>Загрузить пример из базы лидов</strong>
+                <span>Демо-данные из структуры Google Sheets: компания, контакты, статус, следующий шаг.</span>
+              </button>
+            </div>
+            <label class="field-label">Или вставьте строки из таблицы вручную</label>
+            <textarea id="importText" class="import-textarea" placeholder="Вставьте CSV/таблицу: Компания; Контакты; Статус; Следующий шаг..."></textarea>
+            <div class="import-actions">
+              <button class="primary" id="analyzeImportBtn">ИИ-разбор и предпросмотр</button>
+              <button class="secondary" id="clearImportBtn">Очистить</button>
+            </div>
+            <div class="notice-box">
+              <strong>Правило безопасности:</strong> импорт не выполняется автоматически. Сначала система показывает сопоставление колонок, дубли и примеры карточек. Карточки создаются только после подтверждения менеджера.
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>2. Что ИИ создаёт из таблицы</h3></div>
+            <div class="ai-flow">
+              <div><b>Колонки</b><span>Компания, ИНН, контакты, ЛПР, статус, комментарии</span></div>
+              <div><b>Карточки клиентов</b><span>Название, сегмент, ответственный, контактные лица</span></div>
+              <div><b>История</b><span>Дата касания, результат, что отправлено, следующий шаг</span></div>
+              <div><b>Контроль качества</b><span>Дубли, пустые контакты, непонятные статусы</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Сопоставление колонок</h3><span class="status warning" id="mappingStatus">Ожидает данных</span></div>
+            <div id="mappingTable" class="mapping-table empty-state">Здесь появится таблица: колонка из файла → поле ART-LINE OS.</div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Проверка и дубли</h3><span class="pill" id="importStats">0 строк</span></div>
+            <div id="qualityReport" class="quality-report empty-state">После анализа появится список найденных дублей, пустых контактов и замечаний.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head wrap">
+            <h3>Предпросмотр будущих карточек</h3>
+            <div class="import-actions inline"><button class="primary" id="confirmImportBtn" disabled>Подтвердить импорт и создать карточки</button></div>
+          </div>
+          <div id="importPreview" class="preview-grid empty-state">Пока нет данных для предпросмотра.</div>
+        </div>
+      </section>
+
+
+      <section id="funnel" class="section">
+        <div class="card">
+          <div class="card-head"><h3>Воронка продаж до договора</h3><span class="pill">CRM</span></div>
+          <div class="kanban">
+            <div class="lane"><h4>Контакт</h4><div class="task">Новый клиент · запрос вводных</div></div>
+            <div class="lane"><h4>Потребность</h4><div class="task">Уточнить тиражи, материалы, сроки</div></div>
+            <div class="lane"><h4>Предварительный расчёт</h4><div class="task">3 варианта тиража · КП отправлено</div></div>
+            <div class="lane"><h4>Договор</h4><div class="task hot">Согласовать отсрочку и сроки</div></div>
+            <div class="lane"><h4>Активный клиент</h4><div class="task done">Ждём реальную потребность</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculations" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head wrap">
+              <div><h3>Расчёты клиента</h3><p>Все расчёты связаны с карточкой клиента и могут превращаться в спецификацию или заказ.</p></div>
+              <button class="small-btn" data-go="clients">Открыть клиента</button>
+            </div>
+            <div class="mini-table linked-list">
+              <div><strong>CALC-2026-0711-01</strong><span>ООО «ЭНДЖОЙ ФУД» · Попкорн 100×100 · 3 варианта тиража</span><button class="small-btn" data-go="calculator">Открыть в калькуляторе</button></div>
+              <div><strong>CALC-2026-0711-02</strong><span>Пересчёт под альтернативный материал · ожидает согласования</span><button class="small-btn" data-go="clients">К карточке клиента</button></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Связи расчёта</h3><span class="pill">клиентский центр</span></div>
+            <ul class="check-list">
+              <li>Расчёт хранится в карточке клиента.</li>
+              <li>Из расчёта формируются КП и спецификация.</li>
+              <li>После согласования расчёт связывается с заказом.</li>
+              <li>Все комментарии и вопросы остаются в общей истории клиента.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="section">
+        <div class="card">
+          <div class="card-head wrap">
+            <div><h3>Калькулятор v1.3.7</h3><p>Действующий расчётный модуль открывается внутри ART-LINE OS.</p></div>
+            <a class="button-link" href="calculator.html" target="_blank">Открыть отдельно</a>
+          </div>
+          <iframe class="calc-frame" src="calculator.html" title="Калькулятор Арт-Лайн"></iframe>
+        </div>
+      </section>
+
+      <section id="contracts" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Карточка договора</h3><span class="status ok">Подписан</span></div>
+            <div class="form-preview">
+              <label>Клиент <strong>ООО «ЭНДЖОЙ ФУД»</strong></label>
+              <label>Номер договора <strong>20260608</strong></label>
+              <label>Дата <strong>08.06.2026</strong></label>
+              <label>Срок действия <strong>до 31.12.2026</strong></label>
+              <label>Условия <strong>по договору и спецификациям</strong></label>
+              <label>Файл <a href="assets/ДОГОВОР_пример.doc" download>ДОГОВОР_пример.doc</a></label>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Статусы договора</h3></div>
+            <div class="status-list">
+              <span>Нет договора</span><span>Готовится</span><span>Отправлен</span><span>На согласовании</span><span class="active">Подписан</span><span>Нужны правки</span><span>Истёк</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="requests" class="section">
+        <div class="card">
+          <div class="card-head"><h3>Запросы на конкретный заказ</h3><button class="small-btn">+ Запрос</button></div>
+          <div class="request-card">
+            <div>
+              <span class="eyebrow">Запрос клиента</span>
+              <h3>Попкорн 100×100 · 6 видов</h3>
+              <p>Клиент прислал пакеты, ТЗ и макеты. Нужно рассчитать реальный заказ, подготовить спецификацию и передать дизайнеру после согласования.</p>
+            </div>
+            <div class="request-meta">
+              <span>Адрес доставки: склад клиента</span>
+              <span>Желаемый срок: 14 рабочих дней</span>
+              <span>Статус: расчёт согласован</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="specifications" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Спецификация</h3><span class="status warning">На согласовании</span></div>
+            <div class="spec-preview">
+              <div class="spec-row head"><span>Наименование</span><span>Кол-во</span><span>Цена с НДС</span><span>Стоимость</span></div>
+              <div class="spec-row"><span>Этикетка Попкорн 100×100</span><span>50 000</span><span>2,22 ₽</span><span>111 000 ₽</span></div>
+              <div class="spec-row"><span>Этикетка Попкорн 100×100 · вид 2</span><span>50 000</span><span>2,22 ₽</span><span>111 000 ₽</span></div>
+              <div class="spec-row total"><span>ИТОГО</span><span></span><span></span><span>222 000 ₽</span></div>
+            </div>
+            <a class="button-link" href="assets/Спецификация_пример.docx" download>Скачать пример спецификации</a>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Поля спецификации</h3></div>
+            <ul class="check-list">
+              <li>Номер и дата договора.</li>
+              <li>Наименование продукции, количество, цена с НДС и доставкой.</li>
+              <li>Итоговая сумма.</li>
+              <li>Адрес доставки.</li>
+              <li>Срок поставки.</li>
+              <li>Условия оплаты.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="orders" class="section">
+        <div class="content-grid order-layout">
+          <div class="card order-list-card">
+            <div class="card-head"><h3>Заказы</h3><button class="small-btn">+ Заказ</button></div>
+            <div class="order-filters">
+              <button class="active">Все</button>
+              <button>Новые</button>
+              <button>Нужны данные</button>
+              <button>В работе</button>
+              <button>Печать</button>
+            </div>
+            <div class="order-list">
+              <button class="order-item active"><strong>AL-2026-0711-01</strong><span>Попкорн · готов к запуску · 100 000 шт</span></button>
+              <button class="order-item"><strong>AL-2026-0710-03</strong><span>Этикетка косметика · ожидаем нож</span></button>
+              <button class="order-item"><strong>AL-2026-0709-02</strong><span>Бытовая химия · в печати</span></button>
+              <button class="order-item"><strong>AL-2026-0708-04</strong><span>Молочная продукция · вопрос технологу</span></button>
+            </div>
+            <div class="subcard muted-box">
+              <strong>Смысл карточки заказа</strong>
+              <p>Заказ — не просто строка в очереди, а карточка, где видно всё: от запроса клиента до печати и отгрузки.</p>
+            </div>
+          </div>
+
+          <div class="card order-card full-order-card">
+            <div class="breadcrumb-path"><button data-go="clients">ООО «ЭНДЖОЙ ФУД»</button><span>→</span><button data-open-client-tab="client-orders">Заказы клиента</button><span>→</span><strong>AL-2026-0711-01</strong></div>
+            <div class="card-head wrap">
+              <div><span class="eyebrow">Карточка заказа</span><h2>AL-2026-0711-01 · Попкорн 100×100</h2></div>
+              <span class="status warning" id="orderMainStatus">Готов к принятию в работу</span>
+            </div>
+
+            <div class="linked-nav">
+              <button class="small-btn" data-go="clients">Карточка клиента</button>
+              <button class="small-btn" data-go="requests">Запрос клиента</button>
+              <button class="small-btn" data-go="calculations">Расчёт</button>
+              <button class="small-btn" data-go="specifications">Спецификация</button>
+              <button class="small-btn" data-go="approvals">Бланк</button>
+              <button class="small-btn" data-go="questions">Вопросы</button>
+              <button class="small-btn" data-go="production">Очередь печати</button>
+            </div>
+
+            <div class="order-stage-ribbon">
+              <div class="stage done"><span>1</span><strong>Запрос</strong><small>ТЗ и макеты получены</small></div>
+              <div class="stage done"><span>2</span><strong>Расчёт</strong><small>Согласован клиентом</small></div>
+              <div class="stage done"><span>3</span><strong>Спецификация</strong><small>Согласована</small></div>
+              <div class="stage done"><span>4</span><strong>Бланк</strong><small>Подписан</small></div>
+              <div class="stage active"><span>5</span><strong>В работу</strong><small>Нужно принять</small></div>
+              <div class="stage"><span>6</span><strong>Формы / ножи</strong><small>Следующий этап</small></div>
+              <div class="stage"><span>7</span><strong>Печать</strong><small>Очередь</small></div>
+              <div class="stage"><span>8</span><strong>Отгрузка</strong><small>После контроля</small></div>
+            </div>
+            <div class="order-pulse-v10">
+              <article class="pulse-summary danger-soft"><span>Готовность к запуску</span><strong>82%</strong><small>не закрыта оплата и формы</small></article>
+              <article><span>Текущий ответственный</span><strong>Руководитель</strong><small>нужно согласовать отсрочку</small></article>
+              <article><span>Причина остановки</span><strong>Ожидаем формы / оплату</strong><small>ВОП-0048 · ОТС-0007</small></article>
+              <article><span>Следующее действие</span><strong>Согласовать отсрочку 30 дней</strong><small>после этого контроль платежа</small></article>
+              <article><span>Без движения</span><strong>1 день 6 часов</strong><small>последнее действие: создан вопрос</small></article>
+            </div>
+
+            <div class="risk-explain-card">
+              <div><strong>Умное объяснение риска</strong><span>Риск высокий: формы ещё не получены, открыт вопрос по намотке, счёт выставлен, отсрочка 30 дней пока ожидает согласования руководителя.</span></div>
+              <button class="small-btn" data-go="finance">Открыть оплату</button>
+            </div>
+
+            <div class="order-command-center">
+              <div class="launch-panel">
+                <div class="card-head"><h3>Контроль допуска к запуску</h3><span class="pill" id="gateProgress">5 / 5</span></div>
+                <div class="order-gates-checklist">
+                  <label><input type="checkbox" data-order-gate checked /> Договор с клиентом подписан</label>
+                  <label><input type="checkbox" data-order-gate checked /> Реальный расчёт по заказу согласован</label>
+                  <label><input type="checkbox" data-order-gate checked /> Спецификация согласована / подписана</label>
+                  <label><input type="checkbox" data-order-gate checked /> Макеты, ТЗ и файлы получены</label>
+                  <label><input type="checkbox" data-order-gate checked /> Бланк технического согласования подписан клиентом</label>
+                  <label><input type="checkbox" data-order-gate /> Условия оплаты указаны</label>
+                  <label><input type="checkbox" data-order-gate /> Счёт выставлен или согласована отсрочка</label>
+                  <label><input type="checkbox" data-order-gate /> График платежей указан, если оплата частями</label>
+                </div>
+                <button class="primary wide" id="acceptOrderBtn">Принять заказ в работу</button>
+                <p class="muted small-text">После нажатия система создаёт событие, номерованные задачи, уведомления, записи в историю и финансовые задачи по оплате.</p>
+              </div>
+
+              <div class="notification-panel">
+                <h3>Кого уведомить при запуске</h3>
+                <div class="recipient-grid compact-recipient-grid">
+                  <label><input type="checkbox" checked /> Дизайнер</label>
+                  <label><input type="checkbox" checked /> Руководитель</label>
+                  <label><input type="checkbox" checked /> Бухгалтер</label>
+                  <label><input type="checkbox" checked /> Технолог</label>
+                  <label><input type="checkbox" checked /> Печатник</label>
+                  <label><input type="checkbox" /> Логистика</label>
+                </div>
+                <div class="mail-subject-preview">
+                  <span>Тема уведомления</span>
+                  <strong>ПРОШУ ПРИНЯТЬ В РАБОТУ ЗАКАЗ · AL-2026-0711-01</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="tabs order-tabs">
+              <button class="tab active" data-tab="order-passport">Паспорт</button>
+              <button class="tab" data-tab="order-request">Запрос</button>
+              <button class="tab" data-tab="order-calculation">Расчёт / КП</button>
+              <button class="tab" data-tab="order-spec">Спецификация</button>
+              <button class="tab" data-tab="order-blank">Бланк</button>
+              <button class="tab" data-tab="order-tooling">Ножи / формы</button>
+              <button class="tab" data-tab="order-tasks-tab">Задачи</button>
+              <button class="tab" data-tab="order-payment-tab">Оплата</button>
+              <button class="tab" data-tab="order-questions-tab">Вопросы</button>
+              <button class="tab" data-tab="order-files-tab">Файлы</button>
+              <button class="tab" data-tab="order-production-tab">Производство</button>
+              <button class="tab" data-tab="order-history-tab">История</button>
+            </div>
+
+            <div id="order-passport" class="tab-panel active">
+              <div class="content-grid two compact">
+                <div class="subcard">
+                  <h3>Основное</h3>
+                  <div class="info-grid small">
+                    <div><span>Клиент</span><strong><button class="link-like" data-go="clients">ООО «ЭНДЖОЙ ФУД»</button></strong></div>
+                    <div><span>Менеджер</span><strong>Овечкин Константин</strong></div>
+                    <div><span>Номер заказа</span><strong>AL-2026-0711-01</strong></div>
+                    <div><span>Плановый срок</span><strong>10–14 рабочих дней</strong></div>
+                    <div><span>Доставка</span><strong>силами Арт-Лайн</strong></div>
+                    <div><span>Адрес доставки</span><strong>склад клиента по спецификации</strong></div>
+                  </div>
+                </div>
+                <div class="subcard">
+                  <h3>Продукция</h3>
+                  <div class="info-grid small">
+                    <div><span>Продукт</span><strong>Попкорн карамельный</strong></div>
+                    <div><span>Размер</span><strong>100×100 мм</strong></div>
+                    <div><span>Тираж</span><strong>100 000 шт</strong></div>
+                    <div><span>Количество видов</span><strong>2 вида</strong></div>
+                    <div><span>Материал</span><strong>по ТЗ / бланку</strong></div>
+                    <div><span>Втулка</span><strong>76 мм</strong></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="subcard">
+                <div class="card-head"><h3>Хронология заказа</h3><span class="pill">рабочая цепочка</span></div>
+                <div class="order-timeline-mini">
+                  <div><strong>Запрос получен</strong><span>клиент прислал ТЗ, макеты и потребность</span></div>
+                  <div><strong>Расчёт согласован</strong><span>цена и тираж подтверждены менеджером и клиентом</span></div>
+                  <div><strong>Спецификация согласована</strong><span>позиции, стоимость, срок и доставка зафиксированы</span></div>
+                  <div><strong>Бланк подписан</strong><span>дизайнер подготовил, клиент подписал</span></div>
+                  <div><strong>Принять в работу</strong><span>уведомить дизайнеров, руководителя, бухгалтера, технолога и печатника</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="order-request" class="tab-panel">
+              <div class="subcard">
+                <h3>Запрос клиента на реальный заказ</h3>
+                <div class="info-grid">
+                  <div><span>Что прислал клиент</span><strong>ТЗ, пакеты, макеты PDF / вектор</strong></div>
+                  <div><span>Желаемый срок</span><strong>как можно быстрее</strong></div>
+                  <div><span>Адрес доставки</span><strong>из спецификации</strong></div>
+                  <div><span>Комментарий</span><strong>проверить намотку и Pantone</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="order-calculation" class="tab-panel">
+              <div class="subcard">
+                <div class="card-head"><h3>Расчёт / КП</h3><a class="button-link" href="calculator.html" target="_blank">Открыть калькулятор</a></div>
+                <div class="spec-preview">
+                  <div class="spec-row head"><span>Тираж</span><span>Цена за шт.</span><span>Стоимость</span><span>Статус</span></div>
+                  <div class="spec-row"><span>50 000 шт</span><span>по расчёту</span><span>вариант КП</span><span>не выбран</span></div>
+                  <div class="spec-row"><span>100 000 шт</span><span>по расчёту</span><span>согласовано</span><span>выбран клиентом</span></div>
+                  <div class="spec-row"><span>250 000 шт</span><span>по расчёту</span><span>вариант КП</span><span>резерв</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="order-spec" class="tab-panel">
+              <div class="subcard">
+                <div class="card-head"><h3>Спецификация</h3><a class="button-link" href="assets/Спецификация_пример.docx" download>Скачать пример</a></div>
+                <div class="info-grid">
+                  <div><span>Статус</span><strong>Согласована</strong></div>
+                  <div><span>Содержание</span><strong>позиции, количество, цена, НДС</strong></div>
+                  <div><span>Срок поставки</span><strong>не позднее согласованной даты</strong></div>
+                  <div><span>Доставка</span><strong>адрес склада клиента</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="order-blank" class="tab-panel">
+              <div class="subcard">
+                <div class="card-head"><h3>Бланк технического согласования</h3><span class="status ok">Подписан клиентом</span></div>
+                <div class="approval-gallery compact-approval-gallery">
+                  <img src="assets/blank_sample_1.jpg" alt="Бланк согласования" />
+                  <img src="assets/blank_sample_2.jpg" alt="Бланк согласования" />
+                </div>
+              </div>
+            </div>
+
+            <div id="order-tooling" class="tab-panel">
+              <div class="content-grid two compact">
+                <div class="subcard">
+                  <div class="card-head"><h3>Нож</h3><span class="status warning">проверить</span></div>
+                  <div class="tooling-checklist">
+                    <label><input type="radio" name="knife" checked /> Используем существующий нож</label>
+                    <label><input type="radio" name="knife" /> Нужно заказать новый нож</label>
+                    <label><input type="radio" name="knife" /> Клиент согласовал печать на нашем формате</label>
+                  </div>
+                </div>
+                <div class="subcard">
+                  <div class="card-head"><h3>Флексоформы</h3><span class="status warning">макет готовится</span></div>
+                  <div class="tooling-checklist">
+                    <label><input type="checkbox" checked /> Дизайнер готовит макет</label>
+                    <label><input type="checkbox" /> Формы заказаны</label>
+                    <label><input type="checkbox" /> Формы получены</label>
+                    <label><input type="checkbox" /> Технолог передал пакет печатнику</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div id="order-tasks-tab" class="tab-panel">
+              <div class="subcard">
+                <div class="card-head"><h3>Задачи по заказу</h3><span class="pill">ЗАК-0187 → ЗАД-0151–0156</span></div>
+                <div class="order-task-list" id="autoTasksLog">
+                  <article><b>ЗАД-0151</b><strong>Проверить макет и вырубку</strong><span>Дизайнер · срок: сегодня 14:00 · статус: новая</span></article>
+                  <article><b>ЗАД-0152</b><strong>Проверить формы</strong><span>Технолог · этап: формы · статус: в работе</span></article>
+                  <article><b>ЗАД-0153</b><strong>Уточнить намотку</strong><span>Менеджер · связано с ВОП-0048 · статус: ждём ответ</span></article>
+                  <article><b>ЗАД-0154</b><strong>Согласовать отсрочку 30 дней</strong><span>Руководитель · связано с ОТС-0007 · статус: ждёт решения</span></article>
+                  <article><b>ЗАД-0155</b><strong>Проконтролировать первый платёж</strong><span>Менеджер · связано с СЧ-1319 · статус: новая</span></article>
+                </div>
+              </div>
+              <div class="subcard">
+                <div class="card-head"><h3>Шаблон автозадач</h3><span class="status warning">Новый флексо-заказ</span></div>
+                <div class="template-task-grid">
+                  <div><b>Новый заказ</b><span>макет, бланк, формы, штамп, счёт, контроль оплаты, очередь печати</span></div>
+                  <div><b>Повтор</b><span>актуальность макета, старые формы, штамп, материал, условия оплаты</span></div>
+                  <div><b>Повтор с изменениями</b><span>сравнить изменения, обновить бланк, проверить формы и цену</span></div>
+                  <div><b>Брак / перепечатка</b><span>причина брака, ответственный разбор, отдельная очередь</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="order-payment-tab" class="tab-panel">
+              <div class="content-grid two compact">
+                <div class="subcard payment-card-v10">
+                  <div class="card-head"><h3>Счёт и условия оплаты</h3><a class="button-link" href="assets/Счет_пример_1319.pdf" target="_blank">Открыть пример счёта</a></div>
+                  <div class="info-grid small">
+                    <div><span>Счёт</span><strong>СЧ-1319 от 01.07.2026</strong></div>
+                    <div><span>Сумма</span><strong>70 000 ₽</strong></div>
+                    <div><span>НДС</span><strong>22% · 12 622,95 ₽</strong></div>
+                    <div><span>Статус</span><strong>Ожидаем оплату / отсрочку</strong></div>
+                    <div><span>Покупатель</span><strong>ООО «ЭНДЖОЙ ФУД»</strong></div>
+                    <div><span>Ответственный</span><strong>Менеджер + руководитель</strong></div>
+                  </div>
+                </div>
+                <div class="subcard defer-card-v10">
+                  <div class="card-head"><h3>Отсрочка</h3><span class="pill warning">ОТС-0007</span></div>
+                  <div class="defer-controls">
+                    <label>Согласовано дней<input id="deferDays" type="number" min="0" value="30" /></label>
+                    <label>Считать от<select id="deferBase"><option value="shipment">даты отгрузки</option><option value="invoice">даты счёта</option><option value="upd">даты УПД</option></select></label>
+                    <label>Базовая дата<input id="deferStart" type="date" value="2026-07-18" /></label>
+                    <label>Статус<select id="deferStatus"><option>Ожидает согласования руководителя</option><option>Согласована руководителем</option><option>Отклонена</option><option>Требует повторного согласования</option></select></label>
+                  </div>
+                  <div class="defer-result"><span>Расчётный срок оплаты</span><strong id="deferDueDate">17.08.2026</strong><small>Если менеджер меняет число дней после согласования, система должна отправлять отсрочку на повторное согласование.</small></div>
+                </div>
+              </div>
+              <div class="subcard">
+                <div class="card-head"><h3>График платежей</h3><span class="status warning">частичная оплата</span></div>
+                <div class="payment-schedule">
+                  <div class="pay-row head"><span>№</span><span>Условие</span><span>Сумма</span><span>Плановая дата</span><span>Статус</span></div>
+                  <div class="pay-row"><span>1</span><span>до запуска</span><span>20 000 ₽</span><span>06.07.2026</span><span>ожидается</span></div>
+                  <div class="pay-row"><span>2</span><span>до отгрузки</span><span>25 000 ₽</span><span>18.07.2026</span><span>ожидается</span></div>
+                  <div class="pay-row"><span>3</span><span>через 30 дней после отгрузки</span><span>25 000 ₽</span><span id="payPartDue">17.08.2026</span><span>отсрочка на согласовании</span></div>
+                </div>
+              </div>
+              <div class="subcard financial-gate-card">
+                <div class="card-head"><h3>Финансовый допуск к отгрузке</h3><span class="pill danger">требуется решение</span></div>
+                <div class="finance-gate-grid">
+                  <div><span>Допуск</span><strong>Можно отгружать только по согласованной отсрочке</strong></div>
+                  <div><span>Лимит клиента</span><strong>100 000 ₽ / до 30 дней</strong></div>
+                  <div><span>Текущий риск</span><strong>Средний: оплата не подтверждена</strong></div>
+                  <div><span>Следующее действие</span><strong>Руководителю согласовать ОТС-0007</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="order-questions-tab" class="tab-panel">
+              <div class="subcard">
+                <div class="card-head"><h3>Вопросы по заказу</h3><button class="small-btn" data-go="questions">+ Создать вопрос</button></div>
+                <div id="orderQuestionsMini" class="question-list mini"></div>
+              </div>
+            </div>
+
+            <div id="order-files-tab" class="tab-panel">
+              <div class="subcard">
+                <div class="card-head"><h3>Файлы, связанные с заказом</h3><button class="small-btn" data-open-client-tab="client-files">Все файлы клиента</button></div>
+                <div class="file-grid compact-files">
+                  <a href="assets/Спецификация_пример.docx" download><span>Спецификация</span><strong>Спецификация заказа</strong><small>привязана к клиенту и заказу</small></a>
+                  <a href="assets/blank_sample_1.jpg" download><span>Бланк</span><strong>Бланк согласования</strong><small>подписанный файл</small></a>
+                  <a href="assets/ДОГОВОР_пример.doc" download><span>Договор</span><strong>Договор клиента</strong><small>рамочные условия</small></a>
+                  <a href="calculator.html" target="_blank"><span>Расчёт</span><strong>Расчёт / КП</strong><small>исходные параметры цены</small></a>
+                </div>
+              </div>
+            </div>
+
+            <div id="order-production-tab" class="tab-panel">
+              <div class="subcard">
+                <div class="card-head"><h3>Производственный пакет</h3><span class="pill">для технолога и печатника</span></div>
+                <div class="production-package">
+                  <div><span>Дизайнер</span><strong>готовит макет / бланк / формы</strong></div>
+                  <div><span>Технолог</span><strong>комплектует пакет информации и форм для печатника</strong></div>
+                  <div><span>Печатник</span><strong>видит параметры, очередь, вопросы и файлы</strong></div>
+                  <div><span>Очередь</span><strong>после принятия заказ попадает в очередь печати</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="order-history-tab" class="tab-panel">
+              <div class="subcard">
+                <div class="card-head"><h3>История действий заказа</h3><span class="pill">прозрачность процесса</span></div>
+                <div class="order-history-list" id="orderHistoryLog">
+                  <article><span>11.07.2026 · 10:05</span><strong>Расчёт согласован</strong><small>Менеджер зафиксировал выбранный тираж и цену.</small></article>
+                  <article><span>11.07.2026 · 12:10</span><strong>Счёт СЧ-1319 прикреплён к заказу</strong><small>Сумма 70 000 ₽, срок оплаты указан в финансовом блоке.</small></article>
+                  <article><span>11.07.2026 · 13:40</span><strong>Создана заявка ОТС-0007</strong><small>Менеджер указал отсрочку 30 дней, ожидается согласование руководителя.</small></article>
+                  <article><span>11.07.2026 · 14:00</span><strong>Создан вопрос ВОП-0048</strong><small>Нужно подтвердить намотку перед запуском.</small></article>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="approvals" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Бланки технического согласования</h3><span class="status ok">2 примера</span></div>
+            <div class="approval-gallery">
+              <img src="assets/blank_sample_1.jpg" alt="Пример бланка согласования 1" />
+              <img src="assets/blank_sample_2.jpg" alt="Пример бланка согласования 2" />
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Логика бланка</h3><div class="hub-actions"><button class="small-btn" data-go="clients">Карточка клиента</button><button class="small-btn" data-go="orders">Заказ</button><button class="small-btn" data-open-client-tab="client-files">Файлы клиента</button></div></div>
+            <ol class="step-list">
+              <li>Менеджер передаёт информацию и макеты дизайнеру.</li>
+              <li>Дизайнер формирует бланк согласования.</li>
+              <li>Менеджер отправляет бланк клиенту.</li>
+              <li>Клиент подписывает бланк.</li>
+              <li>Подписанный бланк прикрепляется к заказу.</li>
+              <li>После этого заказ можно принять в работу.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="questions" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Создать вопрос по заказу</h3></div>
+            <div class="question-form">
+              <input id="qTitle" placeholder="Тема вопроса" value="Уточнить намотку по бланку" />
+              <textarea id="qText" placeholder="Опишите проблему">В бланке указана одна намотка, а в комментарии менеджера другая. Нужно подтвердить перед запуском.</textarea>
+              <select id="qStage">
+                <option>Бланк согласования</option>
+                <option>Подготовка макета</option>
+                <option>Формы</option>
+                <option>Нож</option>
+                <option>Печать</option>
+                <option>Отгрузка</option>
+              </select>
+              <div class="recipient-grid">
+                <label><input type="checkbox" value="Менеджер" checked /> Менеджер</label>
+                <label><input type="checkbox" value="Дизайнер" checked /> Дизайнер</label>
+                <label><input type="checkbox" value="Руководитель" /> Руководитель</label>
+                <label><input type="checkbox" value="Бухгалтер" /> Бухгалтер</label>
+                <label><input type="checkbox" value="Технолог" checked /> Технолог</label>
+                <label><input type="checkbox" value="Печатник" /> Печатник</label>
+              </div>
+              <button class="primary" id="createQuestionBtn">Создать вопрос и уведомить</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Открытые вопросы</h3><div class="import-actions inline"><button class="small-btn" data-go="clients">Клиент</button><button class="small-btn" data-go="orders">Заказ</button><span class="pill" id="questionCount">3</span></div></div>
+            <div class="notice-box">В v1.0 каждый вопрос получает номер ВОП-0000, срок ответа и поле “кто должен ответить”. Открытый вопрос влияет на риск и пульс заказа.</div>
+            <div id="questionList" class="question-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tooling" class="section">
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Ножи</h3><span class="status warning">проверить</span></div>
+            <div class="status-list vertical">
+              <span class="active">Используем существующий нож</span>
+              <span>Нужно заказать</span>
+              <span>Заказан</span>
+              <span>В изготовлении</span>
+              <span>Получен</span>
+              <span>Готов к работе</span>
+            </div>
+            <p class="muted">Нож может заказать бухгалтер или дизайнер, если по заказу нельзя использовать архивный.</p>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Флексоформы</h3><span class="status warning">готовятся</span></div>
+            <div class="status-list vertical">
+              <span>Не требуются</span>
+              <span class="active">Макет готовится</span>
+              <span>Формы заказаны</span>
+              <span>Формы получены</span>
+              <span>Переданы печатнику</span>
+            </div>
+            <p class="muted">Флексоформы заказывает дизайнер после подготовки макета. Технолог комплектует пакет для печатника.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="production" class="section production-section">
+        <div class="hero-card production-hero">
+          <div>
+            <span class="eyebrow">v1.0 · Производство + задачи + оплата</span>
+            <h2>Производственный план получает управляемые задачи, вопросы и финансовые риски</h2>
+            <p>К плану добавлены текущий ответственный, причина остановки, следующее действие, таймер без движения, задачи, вопросы и базовый контроль оплаты заказа.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="secondary" href="assets/План_заказов_пример.xlsx" download>Скачать пример Excel</a>
+            <button class="primary" data-prod-view="table">План заказов</button>
+          </div>
+        </div>
+
+        <div class="prod-kpi-grid">
+          <article class="prod-kpi"><span>Активные</span><strong>18</strong><small>в производственном плане</small></article>
+          <article class="prod-kpi warning"><span>Ждут сырьё</span><strong>4</strong><small>нужен контроль поставки</small></article>
+          <article class="prod-kpi warning"><span>Формы / штамп</span><strong>3</strong><small>оснастка не закрыта</small></article>
+          <article class="prod-kpi danger"><span>Риск срока</span><strong>5</strong><small>близкая или прошедшая дата</small></article>
+          <article class="prod-kpi"><span>В печати</span><strong>2</strong><small>сейчас на машинах</small></article>
+          <article class="prod-kpi success"><span>Готово к отгрузке</span><strong>3</strong><small>проверить логистику</small></article>
+        </div>
+
+        <div class="content-grid two prod-overview-grid">
+          <div class="card prod-pulse-card" id="prodPulseCard">
+            <div class="card-head"><h3>Пульс выбранного заказа</h3><span class="status warning" id="pulseRisk">Риск срока: средний</span></div>
+            <div class="pulse-main">
+              <div class="pulse-percent"><strong id="pulseReady">78%</strong><span>готовность к запуску</span></div>
+              <div class="pulse-data">
+                <b id="pulseOrder">AL-2026-0711-01 · ООО «ЭНДЖОЙ ФУД»</b>
+                <span id="pulseProduct">Попкорн 100×100 · новая партия</span>
+                <small id="pulseNext">Следующее действие: дождаться форм и подтвердить плановую отгрузку</small>
+              </div>
+            </div>
+            <div class="pulse-checks">
+              <span class="done">Клиент</span><span class="done">Тираж</span><span class="done">Материал</span><span class="warning">Формы</span><span class="done">Штамп</span><span class="danger">Вопрос</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Проблемные заказы</h3><span class="pill danger">5 зон риска</span></div>
+            <div class="problem-list">
+              <article><strong>ООО «ЭНДЖОЙ ФУД»</strong><span>Нет подтверждения по формам, есть открытый вопрос по намотке.</span><button class="small-btn" data-prod-select="AL-2026-0711-01">Открыть</button></article>
+              <article><strong>Grass</strong><span>Близкий срок, нужно подтвердить материал и дату отгрузки.</span><button class="small-btn" data-prod-select="AL-2026-0712-04">Открыть</button></article>
+              <article><strong>ООО «ФэрельГам»</strong><span>Часть строк уже отгружена, но нужно закрыть архив и бирки.</span><button class="small-btn" data-prod-select="936">Открыть</button></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="card prod-command-card">
+          <div class="card-head wrap">
+            <div>
+              <h3>Производственный план</h3>
+              <p>Табличный вид сохраняет привычную логику Excel, но каждая строка может открываться как карточка заказа с пульсом, вопросами, файлами и историей.</p>
+            </div>
+            <div class="prod-view-tabs">
+              <button class="active" data-prod-view="table">Таблица</button>
+              <button data-prod-view="kanban">Канбан</button>
+              <button data-prod-view="machines">Машины</button>
+              <button data-prod-view="archive">Отгружено / брак / сток</button>
+            </div>
+          </div>
+
+          <div class="prod-filters">
+            <button class="active" data-prod-filter="all">Все</button>
+            <button data-prod-filter="active">Активные</button>
+            <button data-prod-filter="material">Ждут сырьё</button>
+            <button data-prod-filter="forms">Формы / штамп</button>
+            <button data-prod-filter="print">В печати</button>
+            <button data-prod-filter="ready">Готово к отгрузке</button>
+            <button data-prod-filter="shipped">Отгружено</button>
+            <button data-prod-filter="problem">Проблемные</button>
+          </div>
+
+          <div class="prod-view-panel active" id="prod-view-table">
+            <div class="prod-scroll">
+              <table class="prod-plan-table">
+                <thead>
+                  <tr><th>Заказчик</th><th>Арт.</th><th>Наименование</th><th>№ партии</th><th>Менеджер</th><th>Новая / повтор</th><th>Размер</th><th>Вид печати</th><th>Машина</th><th>Тираж</th><th>Пог. метры</th><th>Размещён</th><th>Желаемая отгрузка</th><th>Плановая отгрузка</th><th>Материал</th><th>Поставка материала</th><th>ХТ / ламинация</th><th>Формы</th><th>Штамп</th><th>Статус</th><th>Комментарий</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="active-row" data-prod-row data-status="active forms problem" data-order="AL-2026-0711-01" data-client="ООО «ЭНДЖОЙ ФУД»" data-ready="78%" data-risk="Риск срока: средний" data-next="Дождаться форм, закрыть вопрос по намотке и подтвердить отгрузку"><td>ООО «ЭНДЖОЙ ФУД»</td><td>POP-100</td><td>Попкорн карамельно-шоколадный 100×100</td><td>AL-0711</td><td>Овечкин Константин</td><td>Новая</td><td>100×100</td><td>Флексопечать</td><td>Weigang-450</td><td>50 000</td><td>2 220</td><td>11.07.2026</td><td>18.07.2026</td><td>18.07.2026</td><td>Плёнка PP белая каучук</td><td>ожидается</td><td>Нет</td><td><span class="badge warning">Заказаны</span></td><td><span class="badge success">В наличии</span></td><td><span class="badge warning">Ожидаем формы</span></td><td>Проверить намотку и бланк.</td></tr>
+                  <tr data-prod-row data-status="active material problem" data-order="AL-2026-0712-04" data-client="Grass" data-ready="64%" data-risk="Риск срока: высокий" data-next="Подтвердить дату поставки материала и назначить ответственного"><td>Grass</td><td>GR-500</td><td>Этикетка бытовая химия 90×130</td><td>AL-0712</td><td>Овечкин Константин</td><td>Повтор с изм.</td><td>90×130</td><td>Флексопечать</td><td>Weigang-450</td><td>120 000</td><td>5 850</td><td>12.07.2026</td><td>19.07.2026</td><td>20.07.2026</td><td>PP белая</td><td>15.07.2026</td><td>Ламинация</td><td><span class="badge success">В наличии</span></td><td><span class="badge success">В наличии</span></td><td><span class="badge danger">Заказ сырья</span></td><td>Срок зависит от поставки материала.</td></tr>
+                  <tr data-prod-row data-status="print active" data-order="AL-2026-0713-02" data-client="ООО «ТМК Мясо»" data-ready="96%" data-risk="Риск срока: низкий" data-next="Довести печать и передать на постпечатную обработку"><td>ООО «ТМК Мясо»</td><td>TMK-241</td><td>Этикетка мясная продукция 58×90</td><td>AL-0713</td><td>Овечкин Константин</td><td>Повтор</td><td>58×90</td><td>Флексопечать</td><td>Weigang-330</td><td>80 000</td><td>3 500</td><td>13.07.2026</td><td>17.07.2026</td><td>17.07.2026</td><td>Плёнка PP белая</td><td>есть</td><td>Нет</td><td><span class="badge success">В наличии</span></td><td><span class="badge success">В наличии</span></td><td><span class="badge info">В печати</span></td><td>Работает печатник.</td></tr>
+                  <tr data-prod-row data-status="ready active" data-order="AL-2026-0710-03" data-client="Косметика" data-ready="100%" data-risk="Риск срока: низкий" data-next="Передать на отгрузку и закрыть заказ"><td>Косметика</td><td>COS-04</td><td>Этикетка крем 45×70</td><td>AL-0710</td><td>Баранов Александр</td><td>Новая</td><td>45×70</td><td>Цифровая</td><td>LabelSmart</td><td>12 000</td><td>680</td><td>10.07.2026</td><td>16.07.2026</td><td>16.07.2026</td><td>Бумага полуглянец</td><td>есть</td><td>Soft Touch</td><td><span class="badge success">Не требуются</span></td><td><span class="badge success">В наличии</span></td><td><span class="badge success">Готов к отгрузке</span></td><td>Нужны бирки на коробки.</td></tr>
+                  <tr data-prod-row data-status="shipped" data-order="936" data-client="ООО «ФэрельГам»" data-ready="100%" data-risk="Риск срока: закрыт" data-next="Проверить архив, бирки и закрывающие отметки"><td>ООО «ФэрельГам»</td><td>470421</td><td>Огурцы солёные 600 г этик.</td><td>936</td><td>Баранов Александр</td><td>Новая</td><td>—</td><td>Флексопечать</td><td>Weigang-450</td><td>20 000</td><td>1 050 (ф.330)</td><td>12.03.2026</td><td>16.03.2026</td><td>—</td><td>Плёнка PP белая каучук</td><td>17.03.2026</td><td>Нет</td><td><span class="badge warning">Заказаны</span></td><td><span class="badge success">В наличии</span></td><td><span class="badge success">Отгружен</span></td><td>Строка из примера Excel.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="prod-view-panel" id="prod-view-kanban">
+            <div class="prod-kanban">
+              <div class="prod-lane"><h4>Ожидают сырьё</h4><article class="prod-card danger"><b>Grass</b><span>120 000 шт · материал 15.07</span></article></div>
+              <div class="prod-lane"><h4>Формы / штамп</h4><article class="prod-card warning"><b>ЭНДЖОЙ ФУД</b><span>форма заказана · вопрос по намотке</span></article></div>
+              <div class="prod-lane"><h4>Готовы к печати</h4><article class="prod-card"><b>Заказ AL-0714</b><span>макет, формы и материал готовы</span></article></div>
+              <div class="prod-lane"><h4>В печати</h4><article class="prod-card info"><b>ТМК Мясо</b><span>Weigang-330 · 80 000 шт</span></article></div>
+              <div class="prod-lane"><h4>Готовы к отгрузке</h4><article class="prod-card success"><b>Косметика</b><span>нужны бирки на коробки</span></article></div>
+            </div>
+          </div>
+
+          <div class="prod-view-panel" id="prod-view-machines">
+            <div class="machine-grid">
+              <article><div><strong>Weigang-450</strong><span>6 заказов · 3 активных риска</span></div><b>67%</b></article>
+              <article><div><strong>Weigang-330</strong><span>3 заказа · 1 сейчас в печати</span></div><b>42%</b></article>
+              <article><div><strong>LabelSmart</strong><span>4 цифровых заказа · 1 готов к отгрузке</span></div><b>55%</b></article>
+              <article><div><strong>Постпечатка</strong><span>ламинация, рубка, бирки</span></div><b>38%</b></article>
+            </div>
+            <div class="machine-timeline">
+              <div><b>Сегодня</b><span>ТМК Мясо · печать</span><span>ЭНДЖОЙ ФУД · формы</span></div>
+              <div><b>Завтра</b><span>Grass · материал</span><span>Косметика · отгрузка</span></div>
+              <div><b>Неделя</b><span>5 заказов с риском срока</span><span>3 партии готовы к выпуску</span></div>
+            </div>
+          </div>
+
+          <div class="prod-view-panel" id="prod-view-archive">
+            <div class="archive-grid">
+              <article><span>Отгружено</span><strong>ООО «ФэрельГам» · 470421</strong><p>Статус из Excel: отгружен. В рабочей системе строка уходит в архив, но остаётся связанной с клиентом.</p></article>
+              <article><span>Брак / перепечатка</span><strong>Отдельный сценарий</strong><p>Заказ можно создать как перепечатку, связать с исходной партией и причинами брака.</p></article>
+              <article><span>Сток</span><strong>Готовые остатки</strong><p>Учёт остатков по клиенту, артикулу, партии и количеству; можно использовать при повторном заказе.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="finance" class="section">
+        <div class="hero-card soft-hero finance-hero finance-hero-v11">
+          <div>
+            <span class="eyebrow">v1.1 · Финансовый контур</span>
+            <h2>Счета, оплаты, отсрочки, задолженности и финансовый допуск к отгрузке</h2>
+            <p>Раздел финансов стал отдельным рабочим центром: руководитель видит, какие счета нужно выставить, где ждём оплату, какие отсрочки требуют решения, какие платежи просрочены и какие заказы нельзя отгружать без финансового допуска.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="secondary" href="assets/Счет_пример_1319.pdf" target="_blank">Открыть пример счёта</a>
+            <button class="primary" data-go="orders">Оплата в заказе</button>
+          </div>
+        </div>
+
+        <div class="finance-kpi-grid v11">
+          <article class="finance-kpi warning"><span>Нужно выставить счёт</span><strong>3</strong><small>заказы готовы к оформлению</small></article>
+          <article class="finance-kpi danger"><span>Просрочено</span><strong>2</strong><small>платежи требуют действия</small></article>
+          <article class="finance-kpi"><span>Отсрочки</span><strong>5</strong><small>2 ждут решения руководителя</small></article>
+          <article class="finance-kpi success"><span>Финансовый допуск</span><strong>9</strong><small>заказы можно отгружать</small></article>
+          <article class="finance-kpi"><span>Частичная оплата</span><strong>3</strong><small>есть графики платежей</small></article>
+          <article class="finance-kpi warning"><span>Готово, но нет оплаты</span><strong>2</strong><small>требуется решение</small></article>
+        </div>
+
+        <div class="finance-view-switch">
+          <button class="active" data-finance-view="overview">Обзор</button>
+          <button data-finance-view="invoices">Все счета</button>
+          <button data-finance-view="need-invoice">Нужно выставить</button>
+          <button data-finance-view="payments">Платежи</button>
+          <button data-finance-view="deferrals">Отсрочки</button>
+          <button data-finance-view="overdue">Просрочка</button>
+          <button data-finance-view="shipment">Допуск к отгрузке</button>
+          <button data-finance-view="client">Финансы клиента</button>
+        </div>
+
+        <div class="finance-view-panel active" id="finance-view-overview">
+          <div class="content-grid two">
+            <div class="card">
+              <div class="card-head"><h3>Финансовое внимание руководителя</h3><span class="pill danger">контроль</span></div>
+              <div class="finance-alert-list v11">
+                <article><b>ОТС-0007</b><strong>ООО «ЭНДЖОЙ ФУД» · отсрочка 30 дней</strong><span>Менеджер указал согласованный срок. Нужно решение руководителя перед финансовым допуском к отгрузке.</span><button class="small-btn" data-finance-view="deferrals">Открыть отсрочки</button></article>
+                <article><b>СЧ-1324</b><strong>ТМК Мясо · 184 000 ₽ · счёт не выставлен</strong><span>Расчёт и спецификация согласованы, заказ готовится к запуску. Руководителю нужно выписать счёт.</span><button class="small-btn" data-finance-view="need-invoice">Выставить счёт</button></article>
+                <article><b>ПЛТ-0029</b><strong>Просрочка 6 дней · 72 000 ₽</strong><span>Оплата по частичному платежу не поступила. Нужно действие менеджера и контроль руководителя.</span><button class="small-btn" data-finance-view="overdue">Проверить просрочку</button></article>
+                <article><b>ОТГ-0014</b><strong>Заказ готов к отгрузке, но оплаты нет</strong><span>Отгрузка запрещена до оплаты или отдельного разрешения руководителя.</span><button class="small-btn" data-finance-view="shipment">Проверить допуск</button></article>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h3>Правила финансового контроля</h3><span class="status warning">v1.1</span></div>
+              <ul class="check-list">
+                <li>Счёт связывается с клиентом, заказом, спецификацией, графиком платежей и файлом PDF.</li>
+                <li>У клиента есть финансовая карточка: лимит отсрочки, остаток к оплате, просрочки и риск.</li>
+                <li>Отгрузка получает отдельный финансовый допуск: разрешена, запрещена до оплаты, разрешена по отсрочке или требует решения руководителя.</li>
+                <li>Если меняются условия оплаты, система просит указать причину и записывает изменение в историю.</li>
+                <li>Все даты платежей попадают в календарь и превращаются в задачи для ответственных.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="finance-view-panel" id="finance-view-invoices">
+          <div class="card">
+            <div class="card-head"><h3>Реестр счетов</h3><span class="pill">СЧ-0000</span></div>
+            <div class="finance-table v11">
+              <div class="head"><span>Счёт</span><span>Клиент</span><span>Заказ</span><span>Сумма</span><span>Статус</span><span>Допуск</span><span>Ответственный</span></div>
+              <div><span><b>СЧ-1319</b><small>01.07.2026</small></span><span>ООО «ЭНДЖОЙ ФУД»</span><span>ЗАК-0187</span><span>70 000 ₽</span><span class="status warning">ожидаем оплату</span><span class="status warning">по отсрочке</span><span>Овечкин К.</span></div>
+              <div><span><b>СЧ-1320</b><small>03.07.2026</small></span><span>Grass</span><span>ЗАК-0188</span><span>145 000 ₽</span><span class="status ok">частично оплачено</span><span class="status ok">разрешена</span><span>Менеджер 2</span></div>
+              <div><span><b>СЧ-1321</b><small>05.07.2026</small></span><span>ТМК Мясо</span><span>ЗАК-0190</span><span>184 000 ₽</span><span class="status danger">просрочка</span><span class="status danger">запрещена</span><span>Менеджер 3</span></div>
+              <div><span><b>СЧ-1322</b><small>07.07.2026</small></span><span>Молочный клиент</span><span>ЗАК-0191</span><span>92 500 ₽</span><span class="status ok">оплачено</span><span class="status ok">разрешена</span><span>Менеджер 1</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="finance-view-panel" id="finance-view-need-invoice">
+          <div class="card">
+            <div class="card-head"><h3>Заказы, по которым нужно выставить счёт</h3><span class="pill danger">для руководителя</span></div>
+            <div class="need-invoice-grid">
+              <article><span>ЗАК-0194</span><strong>ТМК Мясо · этикетка мясная продукция</strong><p>Спецификация согласована, заказ готовится к запуску. Счёт ещё не выставлен.</p><button class="small-btn">Создать задачу руководителю</button></article>
+              <article><span>ЗАК-0195</span><strong>Косметический клиент · 4 SKU</strong><p>КП подтверждено, менеджер просит выставить счёт на предоплату 50%.</p><button class="small-btn">Открыть заказ</button></article>
+              <article><span>ЗАК-0196</span><strong>Повторный заказ · цифровая печать</strong><p>Повтор без изменений, нужно выписать счёт по условиям договора.</p><button class="small-btn">Выставить счёт</button></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="finance-view-panel" id="finance-view-payments">
+          <div class="content-grid two">
+            <div class="card">
+              <div class="card-head"><h3>График платежей по СЧ-1319</h3><span class="status warning">частичная оплата</span></div>
+              <div class="payment-schedule v11">
+                <div class="pay-row head"><span>№</span><span>Условие</span><span>Сумма</span><span>План</span><span>Факт</span><span>Статус</span></div>
+                <div class="pay-row"><span>1</span><span>до запуска</span><span>20 000 ₽</span><span>06.07.2026</span><span>—</span><span class="status warning">ожидается</span></div>
+                <div class="pay-row"><span>2</span><span>до отгрузки</span><span>25 000 ₽</span><span>18.07.2026</span><span>—</span><span class="status warning">ожидается</span></div>
+                <div class="pay-row"><span>3</span><span>через 30 дней после отгрузки</span><span>25 000 ₽</span><span>17.08.2026</span><span>—</span><span class="status danger">отсрочка на согласовании</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h3>Сводка оплаты</h3><span class="pill">СЧ-1319</span></div>
+              <div class="finance-summary-box">
+                <div><span>Сумма счёта</span><strong>70 000 ₽</strong></div>
+                <div><span>Оплачено</span><strong>0 ₽</strong></div>
+                <div><span>Остаток</span><strong>70 000 ₽</strong></div>
+                <div><span>Ближайший платёж</span><strong>20 000 ₽ · 06.07.2026</strong></div>
+                <div><span>Финансовый риск</span><strong>Средний</strong></div>
+                <div><span>Следующее действие</span><strong>Проверить оплату / отсрочку</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="finance-view-panel" id="finance-view-deferrals">
+          <div class="content-grid two">
+            <div class="card">
+              <div class="card-head"><h3>Реестр отсрочек</h3><span class="pill warning">ОТС-0000</span></div>
+              <div class="deferral-list v11">
+                <article><b>ОТС-0007</b><strong>ООО «ЭНДЖОЙ ФУД» · 30 дней</strong><span>Считать от даты отгрузки · статус: ожидает согласования руководителя · сумма 70 000 ₽</span></article>
+                <article><b>ОТС-0008</b><strong>Grass · 15 дней</strong><span>Согласована руководителем · лимит клиента не превышен</span></article>
+                <article><b>ОТС-0009</b><strong>ТМК Мясо · 45 дней</strong><span>Требует повторного согласования: менеджер изменил срок после решения.</span></article>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h3>Логика согласования</h3><span class="status warning">гибко</span></div>
+              <ul class="check-list">
+                <li>Менеджер может указать любое согласованное количество дней: 7, 10, 21, 45 и так далее.</li>
+                <li>Если срок выходит за лимит клиента или сумма высокая — требуется решение руководителя.</li>
+                <li>После согласования изменение дней, даты отсчёта или графика платежей переводит заявку в “повторное согласование”.</li>
+                <li>К каждой отсрочке прикрепляется причина и комментарий руководителя.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="finance-view-panel" id="finance-view-overdue">
+          <div class="card">
+            <div class="card-head"><h3>Просроченные платежи</h3><span class="pill danger">нужно действие</span></div>
+            <div class="overdue-list v11">
+              <article><b>ПЛТ-0029</b><strong>ТМК Мясо · 72 000 ₽ · просрочка 6 дней</strong><span>Последнее действие: менеджер написал бухгалтерии клиента. Следующее действие: звонок до 15:00.</span><button class="small-btn">Создать задачу ЗАД-0162</button></article>
+              <article><b>ПЛТ-0031</b><strong>Косметический клиент · 35 000 ₽ · просрочка 2 дня</strong><span>Нужен комментарий менеджера и решение: продолжать производство или поставить стоп по отгрузке.</span><button class="small-btn">Передать руководителю</button></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="finance-view-panel" id="finance-view-shipment">
+          <div class="content-grid two">
+            <div class="card">
+              <div class="card-head"><h3>Финансовый допуск к отгрузке</h3><span class="pill danger">стоп-контроль</span></div>
+              <div class="shipment-gate-list">
+                <article class="blocked"><b>ЗАК-0190</b><strong>Готов к отгрузке, но оплата просрочена</strong><span>Решение: отгрузка запрещена до оплаты или разрешения руководителя.</span></article>
+                <article class="warning"><b>ЗАК-0187</b><strong>Можно отгружать только по согласованной отсрочке</strong><span>ОТС-0007 ожидает решения руководителя.</span></article>
+                <article class="ok"><b>ЗАК-0191</b><strong>Отгрузка разрешена</strong><span>Оплата получена, документов достаточно.</span></article>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h3>Правила допуска</h3><span class="status warning">важно</span></div>
+              <div class="finance-rules-grid">
+                <div><b>Без отсрочки</b><span>Отгрузка только после оплаты или отдельного решения руководителя.</span></div>
+                <div><b>С отсрочкой</b><span>Отгрузка разрешается после согласования дней и даты оплаты.</span></div>
+                <div><b>С просрочкой</b><span>Новые отгрузки требуют решения руководителя.</span></div>
+                <div><b>Частичная оплата</b><span>Система смотрит, выполнен ли обязательный платёж до отгрузки.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="finance-view-panel" id="finance-view-client">
+          <div class="content-grid two">
+            <div class="card client-finance-card">
+              <div class="card-head"><h3>Финансовая карточка клиента</h3><span class="pill">ООО «ЭНДЖОЙ ФУД»</span></div>
+              <div class="finance-summary-box">
+                <div><span>Активные счета</span><strong>70 000 ₽</strong></div>
+                <div><span>Оплачено</span><strong>0 ₽</strong></div>
+                <div><span>Остаток</span><strong>70 000 ₽</strong></div>
+                <div><span>Просрочка</span><strong>нет</strong></div>
+                <div><span>Лимит отсрочки</span><strong>100 000 ₽ / до 30 дней</strong></div>
+                <div><span>Финансовый риск</span><strong>средний</strong></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h3>Финансовая история</h3><span class="status ok">прозрачность</span></div>
+              <div class="finance-history-list">
+                <article><span>01.07.2026</span><strong>Счёт СЧ-1319 выставлен</strong><small>70 000 ₽, НДС 22%, файл PDF прикреплён.</small></article>
+                <article><span>11.07.2026</span><strong>Менеджер создал ОТС-0007</strong><small>Отсрочка 30 дней от даты отгрузки, ожидает руководителя.</small></article>
+                <article><span>11.07.2026</span><strong>Изменены условия оплаты</strong><small>Причина: клиент согласовал оплату частями, требуется подтверждение руководителя.</small></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="documents" class="section">
+        <div class="hero-card soft-hero docs-hero-v12">
+          <div>
+            <span class="eyebrow">v1.2 · Документы и производственные пакеты</span>
+            <h2>Документы становятся управляемыми объектами: номера, версии, статусы, проверки и связь с заказом</h2>
+            <p>Этот раздел собирает спецификации, бланки согласования, счета, письма в работу, производственные пакеты, шаблоны и архив. Система показывает, чего не хватает для документа, где есть расхождения и какая версия действительно согласована.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-doc-view="package">Производственный пакет</button>
+            <button class="secondary" data-doc-view="validation">Проверка документов</button>
+          </div>
+        </div>
+
+        <div class="docs-kpi-grid">
+          <article><span>Документы в работе</span><strong>24</strong><small>договоры, спецификации, бланки, счета</small></article>
+          <article><span>Нужны правки</span><strong>4</strong><small>версии требуют проверки</small></article>
+          <article><span>Не хватает данных</span><strong>6</strong><small>перед созданием документов</small></article>
+          <article><span>Подписано клиентом</span><strong>9</strong><small>бланки и спецификации</small></article>
+          <article><span>Производственные пакеты</span><strong>7</strong><small>3 готовы к печати</small></article>
+          <article><span>Расхождения</span><strong>3</strong><small>материал, тираж, условия оплаты</small></article>
+        </div>
+
+        <div class="doc-view-switch">
+          <button class="active" data-doc-view="overview">Обзор</button>
+          <button data-doc-view="registry">Реестр документов</button>
+          <button data-doc-view="package">Производственный пакет</button>
+          <button data-doc-view="versions">Версии и согласования</button>
+          <button data-doc-view="validation">Проверка расхождений</button>
+          <button data-doc-view="client-vault">Документы клиента</button>
+          <button data-doc-view="templates">Шаблоны</button>
+        </div>
+
+        <div class="doc-view-panel active" id="doc-view-overview">
+          <div class="content-grid two">
+            <div class="card">
+              <div class="card-head"><h3>Что можно сформировать из заказа</h3><span class="pill success">связано с ЗАК-0187</span></div>
+              <div class="doc-generator-grid">
+                <article><b>СПЦ-0024</b><strong>Спецификация</strong><span>Позиции, тираж, цена, НДС, доставка, сроки и условия оплаты.</span><button class="small-btn" data-doc-view="registry">Смотреть</button></article>
+                <article><b>БЛН-0041</b><strong>Бланк согласования</strong><span>Размер, материал, цветность, намотка, втулка, макет и подпись клиента.</span><button class="small-btn" data-doc-view="versions">Версии</button></article>
+                <article><b>СЧ-1319</b><strong>Счёт</strong><span>Связан с финансовым модулем, графиком платежей и допуском к отгрузке.</span><a class="small-btn" href="assets/Счет_пример_1319.pdf" target="_blank">Пример PDF</a></article>
+                <article><b>ПИС-0033</b><strong>Письмо в работу</strong><span>Внутреннее сообщение “ПРОШУ ПРИНЯТЬ В РАБОТУ ЗАКАЗ”.</span><button class="small-btn" data-doc-view="package">Открыть</button></article>
+                <article><b>ПРП-0017</b><strong>Производственный пакет</strong><span>Главный внутренний паспорт запуска заказа для дизайнера, технолога и печатника.</span><button class="small-btn" data-doc-view="package">Собрать</button></article>
+                <article><b>ИЗМ-0006</b><strong>Изменения по повтору</strong><span>Что изменилось относительно прошлого заказа: макет, размер, материал, тираж, намотка.</span><button class="small-btn" data-doc-view="validation">Проверить</button></article>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h3>Правила v1.2</h3><span class="status warning">безопасный запуск</span></div>
+              <ul class="check-list">
+                <li>Каждый документ имеет номер: ДОГ, СПЦ, БЛН, СЧ, ПРП, ПИС, ИЗМ.</li>
+                <li>Каждый клиентский документ имеет версию, статус, ответственного и историю отправки.</li>
+                <li>Перед созданием документа система показывает незаполненные критические поля.</li>
+                <li>Клиентские и внутренние документы разделены, чтобы не отправить клиенту служебные комментарии.</li>
+                <li>Производственный пакет собирает всё, что нужно перед печатью: макет, бланк, материал, формы, штамп, намотку и риски.</li>
+                <li>Система подсвечивает расхождения между заказом, бланком, спецификацией и счётом.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-view-panel" id="doc-view-registry">
+          <div class="card">
+            <div class="card-head"><h3>Реестр документов</h3><span class="pill">номера и статусы</span></div>
+            <div class="docs-table">
+              <div class="head"><span>Документ</span><span>Тип</span><span>Клиент / заказ</span><span>Версия</span><span>Статус</span><span>Ответственный</span><span>Файл</span></div>
+              <div><span><b>ДОГ-0008</b><small>рамочный договор</small></span><span>Договор</span><span>ООО «ЭНДЖОЙ ФУД»</span><span>v1</span><span class="status ok">подписан</span><span>Руководитель</span><a href="assets/ДОГОВОР_пример.doc" download>DOC</a></div>
+              <div><span><b>СПЦ-0024</b><small>к договору</small></span><span>Спецификация</span><span>ЗАК-0187</span><span>v2</span><span class="status warning">на проверке</span><span>Менеджер</span><a href="assets/Спецификация_пример.docx" download>DOCX</a></div>
+              <div><span><b>БЛН-0041</b><small>100×100</small></span><span>Бланк</span><span>ЗАК-0187</span><span>v3</span><span class="status ok">подписан</span><span>Дизайнер</span><a href="assets/blank_sample_1.jpg" target="_blank">JPG</a></div>
+              <div><span><b>СЧ-1319</b><small>01.07.2026</small></span><span>Счёт</span><span>ЗАК-0187</span><span>v1</span><span class="status warning">ожидает оплату</span><span>Руководитель</span><a href="assets/Счет_пример_1319.pdf" target="_blank">PDF</a></div>
+              <div><span><b>ПРП-0017</b><small>паспорт запуска</small></span><span>Производственный пакет</span><span>ЗАК-0187</span><span>v1</span><span class="status warning">не собран</span><span>Технолог</span><span>—</span></div>
+              <div><span><b>ИЗМ-0006</b><small>повтор с изменениями</small></span><span>Лист изменений</span><span>ЗАК-0189</span><span>v1</span><span class="status danger">нужна проверка</span><span>Менеджер</span><span>—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-view-panel" id="doc-view-package">
+          <div class="content-grid two">
+            <div class="card production-doc-card">
+              <div class="card-head"><h3>ПРП-0017 · Производственный пакет</h3><span class="pill warning">паспорт запуска</span></div>
+              <div class="package-grid-v12">
+                <div><span>Клиент</span><strong>ООО «ЭНДЖОЙ ФУД»</strong></div>
+                <div><span>Заказ</span><strong>ЗАК-0187</strong></div>
+                <div><span>Изделие</span><strong>Этикетка Попкорн 100×100</strong></div>
+                <div><span>Тираж</span><strong>30 000 + 30 000 шт</strong></div>
+                <div><span>Материал</span><strong>PP белый / уточнить партию</strong></div>
+                <div><span>Цветность</span><strong>CMYK + Pantone</strong></div>
+                <div><span>Намотка</span><strong>проверить с бланком</strong></div>
+                <div><span>Штамп / формы</span><strong>штамп есть · формы заказаны</strong></div>
+                <div><span>Машина</span><strong>Флексо</strong></div>
+                <div><span>Отгрузка</span><strong>после финансового допуска</strong></div>
+              </div>
+              <div class="critical-check-card">
+                <strong>Критически проверить перед печатью</strong>
+                <ul>
+                  <li>версия макета совпадает с подписанным бланком;</li>
+                  <li>материал в заказе совпадает с бланком и спецификацией;</li>
+                  <li>направление намотки подтверждено клиентом;</li>
+                  <li>формы и штамп готовы;</li>
+                  <li>финансовый допуск к отгрузке понятен.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h3>Письмо “ПРОШУ ПРИНЯТЬ В РАБОТУ ЗАКАЗ”</h3><span class="status ok">черновик</span></div>
+              <div class="internal-letter-preview">
+                <b>ПРОШУ ПРИНЯТЬ В РАБОТУ ЗАКАЗ</b>
+                <p>Клиент: ООО «ЭНДЖОЙ ФУД»<br>Заказ: ЗАК-0187<br>Изделие: Этикетка Попкорн 100×100<br>Тираж: 60 000 шт<br>Материал: PP белый<br>Бланк: БЛН-0041 v3, подписан<br>Спецификация: СПЦ-0024 v2, на проверке<br>Счёт: СЧ-1319, ожидаем оплату / отсрочка на согласовании</p>
+                <span>Адресаты: дизайнер, руководитель, бухгалтер, технолог, печатник.</span>
+              </div>
+              <button class="small-btn">Создать задачи по адресатам</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-view-panel" id="doc-view-versions">
+          <div class="content-grid two">
+            <div class="card">
+              <div class="card-head"><h3>Версии БЛН-0041</h3><span class="pill">бланк согласования</span></div>
+              <div class="version-timeline">
+                <article><b>v1</b><strong>Создан дизайнером</strong><span>10.07.2026 · материал и намотка взяты из заявки.</span></article>
+                <article><b>v2</b><strong>Правки менеджера</strong><span>11.07.2026 · исправлена намотка и комментарий по втулке.</span></article>
+                <article class="active"><b>v3</b><strong>Подписан клиентом</strong><span>11.07.2026 · эта версия является актуальной для производства.</span></article>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h3>Внутреннее согласование</h3><span class="status warning">до отправки</span></div>
+              <div class="approval-route-list">
+                <article><strong>Спецификация</strong><span>Менеджер → Руководитель → Клиент</span><b class="status warning">на проверке</b></article>
+                <article><strong>Бланк согласования</strong><span>Дизайнер → Менеджер → Клиент</span><b class="status ok">подписан</b></article>
+                <article><strong>Производственный пакет</strong><span>Менеджер → Технолог → Печатник</span><b class="status danger">не собран</b></article>
+                <article><strong>Счёт</strong><span>Руководитель → Клиент → Финансы</span><b class="status warning">ожидает оплату</b></article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-view-panel" id="doc-view-validation">
+          <div class="content-grid two">
+            <div class="card">
+              <div class="card-head"><h3>Проверка заполненности</h3><span class="pill danger">до создания</span></div>
+              <div class="missing-data-list">
+                <article><b>БЛН-0041</b><strong>Не хватает данных для бланка</strong><span>Не подтверждена намотка; не указана втулка; макет не отмечен как финальный.</span></article>
+                <article><b>СПЦ-0024</b><strong>Не хватает данных для спецификации</strong><span>Не указан точный срок поставки; условия оплаты требуют согласования отсрочки.</span></article>
+                <article><b>ПРП-0017</b><strong>Не хватает данных для производственного пакета</strong><span>Не выбран ответственный технолог; не подтверждена готовность форм.</span></article>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h3>Проверка расхождений</h3><span class="status danger">3 риска</span></div>
+              <div class="mismatch-list">
+                <article><strong>Материал</strong><span>В заказе: PP белый · в бланке: бумага полуглянец. Нужно проверить перед печатью.</span></article>
+                <article><strong>Тираж</strong><span>В заказе: 60 000 шт · в спецификации: 30 000 шт. Нужно подтвердить позиции.</span></article>
+                <article><strong>Оплата</strong><span>В заказе: отсрочка 30 дней · в счёте: оплатить до 06.07.2026. Нужна проверка условий.</span></article>
+              </div>
+            </div>
+          </div>
+          <div class="card changes-card-v12">
+            <div class="card-head"><h3>ИЗМ-0006 · Изменения по повторному заказу</h3><span class="pill warning">повтор с изменениями</span></div>
+            <div class="changes-grid-v12">
+              <div><span>Макет</span><strong>изменён</strong><small>добавлен новый вкус и QR</small></div>
+              <div><span>Размер</span><strong>без изменений</strong><small>100×100 мм</small></div>
+              <div><span>Материал</span><strong>требует проверки</strong><small>раньше бумага, сейчас PP</small></div>
+              <div><span>Намотка</span><strong>изменена</strong><small>уточнить у клиента</small></div>
+              <div><span>Штамп</span><strong>подходит</strong><small>по архиву</small></div>
+              <div><span>Цена / оплата</span><strong>изменены</strong><small>нужно обновить спецификацию</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-view-panel" id="doc-view-client-vault">
+          <div class="card">
+            <div class="card-head"><h3>Документы клиента · ООО «ЭНДЖОЙ ФУД»</h3><span class="pill">единое хранилище</span></div>
+            <div class="client-doc-vault">
+              <a href="assets/ДОГОВОР_пример.doc" download><span>ДОГ-0008</span><strong>Договор с клиентом</strong><small>подписан · DOC</small></a>
+              <a href="assets/Спецификация_пример.docx" download><span>СПЦ-0024</span><strong>Спецификация к заказу</strong><small>v2 · на проверке · DOCX</small></a>
+              <a href="assets/blank_sample_1.jpg" target="_blank"><span>БЛН-0041</span><strong>Бланк согласования</strong><small>v3 · подписан · JPG</small></a>
+              <a href="assets/Счет_пример_1319.pdf" target="_blank"><span>СЧ-1319</span><strong>Счёт на оплату</strong><small>ожидаем оплату · PDF</small></a>
+              <a href="#"><span>ПРП-0017</span><strong>Производственный пакет</strong><small>не собран · внутренний</small></a>
+              <a href="#"><span>ПИС-0033</span><strong>Письмо в работу</strong><small>черновик · внутреннее</small></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-view-panel" id="doc-view-templates">
+          <div class="content-grid two">
+            <div class="card">
+              <div class="card-head"><h3>Шаблоны документов</h3><span class="pill">администратор</span></div>
+              <div class="template-doc-list">
+                <article><strong>Шаблон спецификации</strong><span>позиции, НДС, доставка, сроки, условия оплаты</span></article>
+                <article><strong>Шаблон бланка согласования</strong><span>технические параметры, макет, подпись клиента</span></article>
+                <article><strong>Шаблон письма в работу</strong><span>уведомление дизайнеру, руководителю, бухгалтеру, технологу и печатнику</span></article>
+                <article><strong>Шаблон письма клиенту</strong><span>согласование бланка, оплата, готовность заказа</span></article>
+                <article><strong>Шаблон производственного пакета</strong><span>паспорт запуска заказа</span></article>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h3>Стандарт названия файлов</h3><span class="status ok">автоматически</span></div>
+              <div class="filename-rules">
+                <code>ЭНДЖОЙ_ФУД_ЗАК-0187_БЛН-0041_Бланк_согласования_v3_подписан.pdf</code>
+                <code>ЭНДЖОЙ_ФУД_ЗАК-0187_СПЦ-0024_Спецификация_v2_на_проверке.docx</code>
+                <code>ЭНДЖОЙ_ФУД_ЗАК-0187_ПРП-0017_Производственный_пакет_v1.pdf</code>
+              </div>
+              <p class="small-text">Такой стандарт помогает не искать документы в переписках, папках и чатах.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="mobilepwa" class="section">
+        <div class="hero-card mobile-hero-v15">
+          <div>
+            <span class="eyebrow">v1.5 · Мобильная версия и PWA</span>
+            <h2>ART-LINE OS на телефоне: быстрые действия, рабочий день сотрудника, мобильный пульс руководителя и установка как приложение</h2>
+            <p>Этот этап не добавляет новый большой бизнес-модуль. Он переводит уже собранную систему в удобный мобильный сценарий: быстро найти клиента, зафиксировать звонок, открыть заказ, проверить риск, задать вопрос, увидеть оплату и установить приложение на экран телефона.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-mobile-scroll="phone-preview-v15">Открыть макет телефона</button>
+            <button class="secondary" data-mobile-scroll="pwa-checklist-v15">PWA-чеклист</button>
+            <button class="secondary" data-mobile-quick-action>+ Быстрое действие</button>
+          </div>
+        </div>
+
+        <div class="mobile-layout-v15">
+          <div class="mobile-phone-v15" id="phone-preview-v15">
+            <div class="phone-shell-v15">
+              <div class="phone-status-v15"><span>9:41</span><b>ART-LINE OS</b><span>●●●</span></div>
+              <div class="phone-search-v15">
+                <input id="mobileDemoSearch" placeholder="Поиск: клиент, ИНН, заказ, счёт..." />
+                <button id="mobileSearchDemoBtn">Найти</button>
+              </div>
+              <div class="phone-screen-v15" id="mobileScreenV15">
+                <div class="mobile-today-card-v15 active-mobile-panel" data-mobile-panel="today">
+                  <span class="mobile-chip-v15">Сегодня</span>
+                  <h3>Рабочий день</h3>
+                  <div class="mobile-kpi-row-v15"><b>7</b><span>задач сегодня</span></div>
+                  <div class="mobile-kpi-row-v15 danger"><b>2</b><span>просрочено</span></div>
+                  <div class="mobile-kpi-row-v15"><b>5</b><span>клиентов для касания</span></div>
+                  <button class="mobile-primary-v15" data-mobile-quick-action>+ Быстро после звонка</button>
+                </div>
+                <div class="mobile-order-card-v15">
+                  <div><strong>ЗАК-0187</strong><span>ООО «ЭНДЖОЙ ФУД»</span></div>
+                  <p>Статус: ждём материал · Риск: высокий</p>
+                  <small>Следующее действие: подтвердить поступление сырья</small>
+                  <div class="mobile-actions-v15">
+                    <button data-go="orders">Открыть</button>
+                    <button data-demo-action="task">Задача</button>
+                    <button data-demo-action="question">Вопрос</button>
+                  </div>
+                </div>
+                <div class="mobile-order-card-v15 soft">
+                  <div><strong>КЛ-0008</strong><span>Grass</span></div>
+                  <p>Следующее касание: завтра 11:00</p>
+                  <small>Последнее действие: отправлена презентация и КП</small>
+                  <div class="mobile-actions-v15">
+                    <button>Позвонить</button><button>Email</button><button>Комментарий</button>
+                  </div>
+                </div>
+              </div>
+              <div class="mobile-bottom-nav-demo-v15">
+                <button class="active" data-mobile-demo-tab="today">Главная</button>
+                <button data-mobile-demo-tab="clients">Клиенты</button>
+                <button data-mobile-demo-tab="orders">Заказы</button>
+                <button data-mobile-demo-tab="tasks">Задачи</button>
+                <button data-mobile-demo-tab="more">Ещё</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-grid compact">
+            <div class="card">
+              <div class="card-head"><h3>Что изменилось в v1.5</h3><span class="pill success">мобильный слой</span></div>
+              <div class="mobile-feature-grid-v15">
+                <article><strong>Мобильный рабочий стол</strong><span>Задачи, просрочки, вопросы, клиенты для касания и срочные заказы на одном экране.</span></article>
+                <article><strong>Мобильный пульс руководителя</strong><span>Деньги рядом, проблемные заказы, отсрочки, готовность к отгрузке и решения на сегодня.</span></article>
+                <article><strong>Быстро после звонка</strong><span>Комментарий, следующее касание, статус клиента, задача, вопрос и прикрепление файла.</span></article>
+                <article><strong>Карточки вместо таблиц</strong><span>На телефоне заказ, клиент, счёт и задача показываются компактными карточками.</span></article>
+                <article><strong>Кнопки связи</strong><span>Позвонить, написать email, скопировать контакт, открыть сайт и добавить комментарий.</span></article>
+                <article><strong>PWA-подготовка</strong><span>Manifest, service worker, иконки, тема, экран запуска и инструкция по установке.</span></article>
+              </div>
+            </div>
+
+            <div class="card quick-action-panel-v15" id="quick-action-panel-v15">
+              <div class="card-head"><h3>+ Быстрое действие после звонка</h3><span class="pill warning">менеджер</span></div>
+              <div class="quick-mobile-form-v15">
+                <label>Клиент<input value="ООО «ЭНДЖОЙ ФУД»" /></label>
+                <label>Что произошло<select><option>Звонок</option><option>Email</option><option>WhatsApp</option><option>Встреча</option></select></label>
+                <label>Комментарий<textarea>Клиент попросил уточнить срок производства и возможность отгрузки после подписания бланка.</textarea></label>
+                <label>Следующее действие<input value="Перезвонить завтра в 11:00" /></label>
+              </div>
+              <div class="quick-mobile-buttons-v15">
+                <button class="primary" id="saveQuickMobileAction">Сохранить в историю</button>
+                <button class="small-btn" data-demo-action="task">Создать задачу</button>
+                <button class="small-btn" data-demo-action="question">Создать вопрос</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card">
+            <div class="card-head"><h3>Мобильные сценарии по ролям</h3><span class="pill">быстрый доступ</span></div>
+            <div class="role-mobile-grid-v15">
+              <article><strong>Менеджер</strong><span>Клиенты, звонки, комментарии, КП, задачи, следующее касание, документы и оплата.</span></article>
+              <article><strong>Руководитель</strong><span>Проблемы дня, деньги, отсрочки, отгрузки, просрочки, риски и быстрые решения.</span></article>
+              <article><strong>Дизайнер</strong><span>Бланки, макеты, вопросы по заказам, срочные задачи, файлы и комментарии менеджера.</span></article>
+              <article><strong>Технолог</strong><span>Материал, формы, штамп, производственный пакет, вопросы производства и готовность к печати.</span></article>
+              <article><strong>Печатник</strong><span>Очередь, параметры печати, статус заказа, бланк, производственный пакет и замечания.</span></article>
+              <article><strong>Бухгалтер</strong><span>Счета, оплаты, отсрочки, финансовый допуск и задолженность по клиентам.</span></article>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Центр мобильных уведомлений</h3><span class="pill danger">демо</span></div>
+            <div class="mobile-notice-list-v15">
+              <article><b>ОТС-0007 ждёт согласования</b><span>Руководителю · отсрочка 30 дней · сумма 70 000 ₽</span><button class="small-btn">Согласовать</button></article>
+              <article><b>ЗАК-0187 без движения 2 дня</b><span>Причина: не подтверждено поступление материала</span><button class="small-btn" data-go="orders">Открыть</button></article>
+              <article><b>БЛН-0041 не подписан</b><span>Нужно напомнить клиенту и зафиксировать следующее действие</span><button class="small-btn" data-go="approvals">К бланку</button></article>
+              <article><b>ВОП-0031 без ответа</b><span>Адресат: технолог · влияет на запуск заказа</span><button class="small-btn" data-go="questions">К вопросу</button></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="pwa-checklist-v15">
+          <div class="card-head wrap">
+            <div><h3>PWA-чеклист установки</h3><p>В прототип включены manifest, service worker, иконки, тема приложения и инструкция. На реальном домене нужен HTTPS, чтобы установка и offline-кэш работали корректно.</p></div>
+            <span class="pill success">готово к упаковке</span>
+          </div>
+          <div class="pwa-check-grid-v15">
+            <article class="done"><strong>Manifest</strong><span>Название, short name, иконки, standalone-режим, тема.</span></article>
+            <article class="done"><strong>Service worker</strong><span>Кэширует ключевые файлы прототипа и показывает офлайн-заглушку.</span></article>
+            <article class="done"><strong>Иконки</strong><span>192×192, 512×512, Apple touch icon, favicon.</span></article>
+            <article class="done"><strong>Нижнее меню</strong><span>Главная, Клиенты, Заказы, Задачи, Ещё.</span></article>
+            <article class="done"><strong>Мобильные карточки</strong><span>Заказы, клиенты, задачи и уведомления без широких таблиц.</span></article>
+            <article><strong>Реальные push</strong><span>Позже, после серверной части и настоящих пользователей.</span></article>
+          </div>
+        </div>
+
+        <div class="content-grid two">
+          <div class="card install-card-v15">
+            <h3>Как установить на телефон</h3>
+            <ol>
+              <li>Загрузить папку приложения на HTTPS-домен или тестовый хостинг.</li>
+              <li>Открыть ссылку в Safari на iPhone или Chrome на Android.</li>
+              <li>Нажать «Поделиться» / меню браузера.</li>
+              <li>Выбрать «На экран Домой» или «Установить приложение».</li>
+              <li>Открывать ART-LINE OS как обычное приложение.</li>
+            </ol>
+          </div>
+          <div class="card offline-card-v15">
+            <h3>Офлайн-заглушка</h3>
+            <div class="offline-preview-v15">
+              <strong>Нет подключения</strong>
+              <span>Последние данные могут быть недоступны. Попробуйте обновить позже или продолжайте работу с сохранённым прототипом.</span>
+              <button class="small-btn">Повторить</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="audit" class="section">
+        <div class="hero-card audit-hero-v16">
+          <div>
+            <span class="eyebrow">v1.6 · финальный прототип</span>
+            <h2>Аудит системы, тестовые сценарии и подготовка к серверу</h2>
+            <p>Этот раздел нужен, чтобы перед серверной разработкой проверить архитектуру ART-LINE OS как настоящий рабочий продукт: роли, права, критические сценарии, блокировки, журнал действий, карту данных и этапы внедрения.</p>
+            <div class="hero-actions">
+              <button class="primary" data-audit-scroll="audit-scenarios-v16">Тестовые сценарии</button>
+              <button class="secondary" data-audit-scroll="rights-matrix-v16">Матрица прав</button>
+              <button class="secondary" data-audit-scroll="server-readiness-v16">Готовность к серверу</button>
+            </div>
+          </div>
+          <div class="audit-score-v16">
+            <span>Готовность прототипа</span>
+            <strong>86%</strong>
+            <small>Логика собрана. До сервера нужно закрепить права, блокировки, сущности базы данных и критические сценарии.</small>
+          </div>
+        </div>
+
+        <div class="audit-kpi-grid-v16">
+          <article><span>Сценариев проверки</span><strong>8</strong><small>новый клиент, повтор, отсрочка, брак, зависание</small></article>
+          <article><span>Красных зон</span><strong>9</strong><small>себестоимость, цена, отгрузка, документы</small></article>
+          <article><span>Ролей</span><strong>6</strong><small>руководитель, менеджер, бухгалтер, дизайнер, технолог, печатник</small></article>
+          <article><span>Сущностей данных</span><strong>18</strong><small>клиенты, заказы, счета, файлы, история</small></article>
+        </div>
+
+        <div class="grid two">
+          <div class="card audit-readiness-card-v16">
+            <div class="card-head"><h3>Аудит системы</h3><span class="pill warning">перед сервером</span></div>
+            <div class="audit-columns-v16">
+              <article class="done"><strong>Готово как логика</strong><span>Клиенты, CRM, заказы, задачи, вопросы, производство, финансы, документы, мобильная оболочка.</span></article>
+              <article class="demo"><strong>Только демо</strong><span>Авторизация, права доступа, общие файлы, уведомления, синхронизация, реальные оплаты.</span></article>
+              <article class="server"><strong>Требует сервера</strong><span>База данных, логины, роли, история действий, хранение файлов, уведомления между сотрудниками.</span></article>
+              <article class="danger"><strong>Нельзя запускать без решения</strong><span>Кто видит себестоимость, кто меняет цену, кто разрешает отгрузку, кто правит подписанные документы.</span></article>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Красные зоны перед сервером</h3><span class="pill danger">решить обязательно</span></div>
+            <div class="red-zone-list-v16">
+              <div><b>1</b><span>Кто видит себестоимость и маржу?</span></div>
+              <div><b>2</b><span>Кто может менять цену после согласования?</span></div>
+              <div><b>3</b><span>Кто согласовывает отсрочку и изменение срока?</span></div>
+              <div><b>4</b><span>Кто разрешает отгрузку без оплаты?</span></div>
+              <div><b>5</b><span>Кто может удалить заказ или документ?</span></div>
+              <div><b>6</b><span>Как фиксируется замена макета?</span></div>
+              <div><b>7</b><span>Можно ли менять подписанный бланк без новой версии?</span></div>
+              <div><b>8</b><span>Кто закрывает заказ и финансы?</span></div>
+              <div><b>9</b><span>Какие действия требуют причины изменения?</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="audit-scenarios-v16">
+          <div class="card-head">
+            <h3>Тестовые и критические сценарии</h3>
+            <div class="btn-row-v16">
+              <button class="small-btn" id="showCriticalScenariosV16">Только критические</button>
+              <button class="small-btn" id="showAllScenariosV16">Показать все</button>
+            </div>
+          </div>
+          <div class="scenario-grid-v16" id="scenarioGridV16">
+            <article data-scenario-risk="normal"><span>Новый клиент</span><strong>Лид → расчёт → договор → заказ → производство → отгрузка</strong><small>Проверяет базовый путь от первого контакта до закрытия заказа.</small></article>
+            <article data-scenario-risk="normal"><span>Повторный заказ</span><strong>Повтор без изменений</strong><small>Проверяет быстрый запуск при наличии макета, ножа, форм и условий.</small></article>
+            <article data-scenario-risk="critical"><span>Критично</span><strong>Повторный заказ с изменениями ушёл как обычный повтор</strong><small>Система должна подсветить изменения по макету, размеру, тиражу, намотке или оплате.</small></article>
+            <article data-scenario-risk="critical"><span>Критично</span><strong>Бланк не подписан, но заказ хотят отправить в печать</strong><small>Должна быть блокировка или разрешение только через руководителя.</small></article>
+            <article data-scenario-risk="critical"><span>Критично</span><strong>Заказ готов к отгрузке, но нет оплаты</strong><small>Нужен финансовый допуск: оплачено, согласована отсрочка или решение руководителя.</small></article>
+            <article data-scenario-risk="critical"><span>Критично</span><strong>В спецификации один тираж, в заказе другой</strong><small>Система должна показать расхождение между документом и заказом.</small></article>
+            <article data-scenario-risk="warning"><span>Внимание</span><strong>Клиент завис без следующего действия</strong><small>CRM должна создать напоминание и показать клиента в “без движения”.</small></article>
+            <article data-scenario-risk="warning"><span>Внимание</span><strong>Заказ с браком / перепечаткой</strong><small>Нужна отдельная причина брака, ответственный за анализ и новый производственный путь.</small></article>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <div class="card-head"><h3>Чек-листы готовности заказа</h3><span class="pill">контроль запуска</span></div>
+            <div class="checklist-tabs-v16">
+              <button class="active" data-readiness-tab="launch">К запуску</button>
+              <button data-readiness-tab="print">К печати</button>
+              <button data-readiness-tab="ship">К отгрузке</button>
+              <button data-readiness-tab="close">К закрытию</button>
+            </div>
+            <div class="readiness-box-v16" id="readinessBoxV16">
+              <h4>Готовность к запуску</h4>
+              <p><span class="ok">✓</span> Договор есть</p>
+              <p><span class="ok">✓</span> Расчёт согласован</p>
+              <p><span class="ok">✓</span> Спецификация готова</p>
+              <p><span class="bad">✕</span> Бланк не подписан</p>
+              <p><span class="bad">✕</span> Счёт не выставлен</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Правила блокировок</h3><span class="pill danger">не просто предупреждения</span></div>
+            <div class="block-rules-v16">
+              <article><strong>Нельзя принять в работу</strong><span>без подписанного бланка или разрешения руководителя.</span></article>
+              <article><strong>Нельзя отгрузить</strong><span>без оплаты, согласованной отсрочки или финансового допуска.</span></article>
+              <article><strong>Нельзя изменить подписанный документ</strong><span>без создания новой версии и записи причины.</span></article>
+              <article><strong>Нельзя закрыть заказ</strong><span>без финального статуса производства, отгрузки и оплаты.</span></article>
+              <article><strong>Нельзя удалить важный объект</strong><span>без прав администратора и записи в журнал действий.</span></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="rights-matrix-v16">
+          <div class="card-head"><h3>Матрица прав “может / не может”</h3><span class="pill success">для программиста</span></div>
+          <div class="rights-table-wrap-v16">
+            <table class="rights-table-v16">
+              <thead><tr><th>Действие</th><th>Менеджер</th><th>Бухгалтер</th><th>Дизайнер</th><th>Технолог</th><th>Печатник</th><th>Руководитель</th></tr></thead>
+              <tbody>
+                <tr><td>Создать клиента</td><td>Да</td><td>Да</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Да</td></tr>
+                <tr><td>Видеть себестоимость / маржу</td><td>Нет</td><td>Да</td><td>Нет</td><td>Ограниченно</td><td>Нет</td><td>Да</td></tr>
+                <tr><td>Изменить цену после согласования</td><td>Запрос</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Да</td></tr>
+                <tr><td>Создать заказ</td><td>Да</td><td>Да</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Да</td></tr>
+                <tr><td>Подготовить бланк</td><td>Просмотр</td><td>Нет</td><td>Да</td><td>Да</td><td>Нет</td><td>Да</td></tr>
+                <tr><td>Согласовать отсрочку</td><td>Запрос</td><td>Проверка</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Да</td></tr>
+                <tr><td>Разрешить отгрузку без оплаты</td><td>Нет</td><td>Запрос</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Да</td></tr>
+                <tr><td>Удалить заказ / документ</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Нет</td><td>Админ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <div class="card-head"><h3>Журнал действий</h3><span class="pill">audit log</span></div>
+            <div class="audit-log-v16">
+              <article><b>20:10</b><span>Овечкин Константин изменил статус ЗАК-0187: “Бланк отправлен” → “Бланк подписан”.</span></article>
+              <article><b>20:12</b><span>Руководитель согласовал ОТС-0007 на 30 дней. Причина: клиент с действующим договором.</span></article>
+              <article><b>20:14</b><span>Дизайнер загрузил новую версию макета. Создана версия документа БЛН-0041 v3.</span></article>
+              <article><b>20:18</b><span>Система заблокировала отгрузку: счёт СЧ-1319 не оплачен, отсрочка не согласована.</span></article>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Карта данных</h3><span class="pill success">связи сущностей</span></div>
+            <div class="data-map-v16">
+              <div><strong>Клиент</strong><span>контакты · расчёты · заказы · счета · файлы · история</span></div>
+              <div><strong>Заказ</strong><span>клиент · расчёт · спецификация · бланк · счёт · задачи · вопросы · производство</span></div>
+              <div><strong>Счёт</strong><span>заказ · оплаты · отсрочки · график платежей · допуск к отгрузке</span></div>
+              <div><strong>Документ</strong><span>тип · номер · версия · статус · файл · автор · история изменений</span></div>
+              <div><strong>Задача / вопрос</strong><span>заказ · клиент · адресат · срок · статус · уведомления</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two" id="server-readiness-v16">
+          <div class="card">
+            <div class="card-head"><h3>Первая серверная версия</h3><span class="pill success">обязательно</span></div>
+            <ul class="server-list-v16">
+              <li>Настоящие логины сотрудников и роли.</li>
+              <li>Общая база клиентов, заказов, задач и вопросов.</li>
+              <li>Файлы, документы, версии и статусы.</li>
+              <li>Финансы: счета, оплаты, отсрочки, допуск к отгрузке.</li>
+              <li>Журнал действий и история изменений.</li>
+              <li>Уведомления внутри системы.</li>
+              <li>Права доступа по ролям.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Позже, не в первый запуск</h3><span class="pill">не перегружать</span></div>
+            <ul class="server-list-v16 muted">
+              <li>Голосовой ИИ-помощник.</li>
+              <li>Интеграция с 1С и банком.</li>
+              <li>Телефония и email-рассылка.</li>
+              <li>Настоящие push-уведомления.</li>
+              <li>Сложная BI-аналитика и прогнозы.</li>
+              <li>Автоматическая генерация Word/PDF на сервере.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <div class="card-head"><h3>Проверка интерфейса на перегруз</h3><span class="pill warning">упрощение</span></div>
+            <div class="simplify-list-v16">
+              <article><strong>Скрыть в “Ещё”</strong><span>редкие разделы для менеджера: настройки, расширенная аналитика, системные справочники.</span></article>
+              <article><strong>Показывать только при проблеме</strong><span>критические расхождения, красные зоны, блокировки, системные предупреждения.</span></article>
+              <article><strong>Не показывать всем</strong><span>себестоимость, маржу, финансовые риски, администрирование ролей.</span></article>
+              <article><strong>Свернуть</strong><span>длинные истории, архивные документы, закрытые задачи и старые уведомления.</span></article>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>План внедрения</h3><span class="pill success">без резкого запуска</span></div>
+            <div class="rollout-v16">
+              <div><b>1</b><span>Тест руководителем и одним менеджером</span></div>
+              <div><b>2</b><span>Тест отдела продаж на реальных клиентах</span></div>
+              <div><b>3</b><span>Подключение дизайнера и технолога</span></div>
+              <div><b>4</b><span>Подключение производства</span></div>
+              <div><b>5</b><span>Подключение финансов</span></div>
+              <div><b>6</b><span>Перенос реальных данных</span></div>
+              <div><b>7</b><span>Запуск серверной версии</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ai" class="section">
+        <div class="card ai-card">
+          <span class="eyebrow">Будущий модуль</span>
+          <h2>ИИ-помощник внутри заказа</h2>
+          <p>ИИ должен работать с клиентом, расчётом, договором, спецификацией, бланком и вопросами: находить недостающие данные, формировать письмо, создавать задачу дизайнеру или объяснять, почему заказ пока нельзя принять в работу.</p>
+          <div class="prompt-chips"><span>«Каких данных не хватает?»</span><span>«Сформируй письмо клиенту»</span><span>«Создай вопрос технологу»</span><span>«Подготовь задачу дизайнеру»</span></div>
+        </div>
+      </section>
+
+      <section id="settings" class="section">
+        <div class="card">
+          <div class="card-head"><h3>Настройки будущей системы</h3></div>
+          <div class="settings-grid">
+            <div>Пользователи и роли</div><div>Материалы и цены</div><div>Импорт таблиц</div><div>Шаблоны договора</div><div>Шаблоны спецификации</div><div>Шаблоны бланков</div><div>Уведомления</div><div>Статусы заказов</div><div>Права доступа</div><div>Счета и отсрочки</div><div>Шаблоны задач</div><div>Нумерация задач и вопросов</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="mobile-bottom-nav-v15" id="mobileBottomNavV15">
+      <button data-go="dashboard" class="active"><span>⌂</span>Главная</button>
+      <button data-go="clients"><span>◎</span>Клиенты</button>
+      <button data-go="orders"><span>▣</span>Заказы</button>
+      <button data-go="tasks"><span>✓</span>Задачи</button>
+      <button data-go="mobilepwa"><span>☰</span>Ещё</button>
+    </nav>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

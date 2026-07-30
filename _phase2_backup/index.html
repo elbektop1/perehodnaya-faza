@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Типография — заказы</title>
+  <meta name="theme-color" content="#151821" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="ART-LINE OS" />
+  <!-- manifest.webmanifest пока не подключаем — заглушка, полноценный PWA-перенос отложен за рамки Фазы 0 -->
+  <link rel="icon" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="startup-screen-v15" id="startupScreenV15"><strong>ART-LINE OS</strong><span>Загрузка мобильного рабочего пространства...</span></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand no-logo">
+        <div>
+          <strong>ART-LINE OS</strong>
+          <span>v1.6 · Финальный аудит и подготовка к серверу</span>
+        </div>
+      </div>
+
+      <div class="role-panel">
+        <label for="roleSelect">Кабинет</label>
+        <select id="roleSelect">
+          <option value="manager">Менеджер</option>
+          <option value="designer">Дизайнер</option>
+          <option value="technologist">Технолог</option>
+          <option value="printer">Печатник</option>
+          <option value="accountant">Бухгалтер</option>
+          <option value="leader">Руководитель</option>
+          <option value="worker">Печатник</option>
+          <option value="production_manager">Менеджер производства</option>
+        </select>
+      </div>
+
+      <nav class="nav" id="mainNav">
+        <button data-section="dashboard" class="active">Главная</button>
+        <button data-section="pulse">Пульс компании</button>
+        <button data-section="workflow">Сквозная логика</button>
+        <button data-section="mobilepwa">Мобильная версия</button>
+        <button data-section="audit">Аудит v1.6</button>
+        <button data-section="clients">Клиенты</button>
+        <button data-section="crm">CRM</button>
+        <button data-section="workspace">Рабочий стол</button>
+        <button data-section="employees">Сотрудники</button>
+        <button data-section="calendar">Календарь</button>
+        <button data-section="tasks">Задачи</button>
+        <button data-section="news">Новости</button>
+        <button data-section="notifications">Уведомления</button>
+        <button data-section="import">Импорт базы</button>
+        <button data-section="funnel">Воронка</button>
+        <button data-section="calculator">Калькулятор</button>
+        <button data-section="calculations">Расчёты</button>
+        <button data-section="contracts">Договоры</button>
+        <button data-section="requests">Запросы</button>
+        <button data-section="specifications">Спецификации</button>
+        <button data-section="orders">Заказы</button>
+        <button data-section="approvals">Бланки согласования</button>
+        <button data-section="questions">Вопросы</button>
+        <button data-section="tooling">Ножи и формы</button>
+        <button data-section="production">Производство</button>
+        <button data-section="finance">Финансы</button>
+        <button data-section="documents">Документы</button>
+        <button data-section="ai">ИИ</button>
+        <button data-section="settings">Настройки</button>
+      </nav>
+
+      <div class="side-note">
+        <span>Цепочка:</span>
+        контакт → клиент → расчёт → документы → заказ → производство → мобильный контроль
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div>
+          <h1 id="pageTitle">Главная</h1>
+          <p id="pageSubtitle">Контроль клиента, договора, заказа и производства в одном месте.</p>
+        </div>
+        <div class="user-card">
+          <span id="roleName">Менеджер</span>
+          <strong>Овечкин Константин</strong>
+        </div>
+      </header>
+
+      <section id="dashboard" class="section active-section">
+        <div class="hero-card">
+          <div>
+            <span class="eyebrow">Мобильный этап</span>
+            <h2>ART-LINE OS готовится к работе как мобильное PWA-приложение для менеджера, руководителя и производства</h2>
+            <p>В v1.6 добавлен финальный аудит системы: тестовые сценарии, чек-листы готовности заказа, матрица прав доступа, красные зоны перед сервером, правила блокировок, журнал действий, карта данных и план внедрения.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-go="audit">Аудит v1.6</button>
+            <button class="secondary" data-go="mobilepwa">Мобильная версия</button>
+            <button class="secondary" data-go="workflow">С�

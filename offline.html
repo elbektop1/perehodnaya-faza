@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нет подключения</title>
+  <style>
+    body {
+      margin: 0; padding: 20px;
+      background: #F4F1EA;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: 0 4px 16px rgba(22,24,29,0.06);
+    }
+    h1 { font-size: 20px; margin: 0 0 12px; color: #16181D; }
+    p { font-size: 14px; color: #71757E; margin: 0 0 24px; line-height: 1.5; }
+    .btn {
+      display: inline-block; width: 100%; padding: 12px;
+      background: #d0201b; color: #fff; border: none;
+      border-radius: 10px; font-size: 15px; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+    }
+    .btn:active { background: #b01712; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Нет подключения</h1>
+    <p>Проверьте интернет и обновите страницу</p>
+    <button class="btn" onclick="location.reload()">Повторить</button>
+  </div>
+</body>
+</html>
